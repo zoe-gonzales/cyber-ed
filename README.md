@@ -112,7 +112,7 @@ Results - desktop
 
 Results - mobile
 
-<img src="./client/public/images/readme/results_mobile.png" alt="Results Mobile" style="{ width: 320px }">
+<img src="./client/public/images/readme/results_mobile.png" alt="Results Mobile" width="320" height="568">
 
 Plan - desktop
 
@@ -124,8 +124,8 @@ Plan Detail - desktop
 
 Plan - mobile
 
-<img src="./client/public/images/readme/plan_mobile.png" alt="Plan Mobile" style="{ width: 320px }">
+<img src="./client/public/images/readme/plan_mobile.png" alt="Plan Mobile" width="320" height="568">
 
 Plan Detail - mobile
 
-<img src="./client/public/images/readme/plan_detail_mobile.png" alt="Plan Detail Mobile" style="{ width: 320px }">
+<img src="./client/public/images/readme/plan_detail_mobile.png" alt="Plan Detail Mobile" width="320" height="568">
