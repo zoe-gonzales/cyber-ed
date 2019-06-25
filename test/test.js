@@ -16,3 +16,7 @@ describe('Basic Mocha String Test', () => {
     assert.typeOf(4, 'string');
   });
 });
+
+// describe('User Model Test', () => {
+//   it('should return ')
+// });
