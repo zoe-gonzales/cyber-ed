@@ -3,7 +3,6 @@
 
 const { expect, chai } = require('chai');
 const server = require('../server');
-const user = require('../controllers/userController');
 const db = require('../models');
 
 // describe('Basic Mocha String Test', () => {
@@ -24,7 +23,7 @@ const db = require('../models');
 describe('User Controller Actions', () => {
   beforeEach(() => {
     request = chai.request(server);
-    return db.users.remove({});
+    return db.User.remove({});
   });
 
   it('should find alls users in the database', (done) => {
@@ -46,8 +45,7 @@ describe('User Controller Actions', () => {
 
         expect(err).to.be.null;
         expect(responseStatus).to.equal(200);
-        expect(responseBody)
-          .to.be.an('array');
+        expect(responseBody).to.be.an('array');
       });
       done();
     });
