@@ -1,6 +1,12 @@
 const db = require('../models');
 
 module.exports = {
+  getAllUsers(req, res) {
+    db.User
+      .find({})
+      .then(userData => res.json(userData))
+      .catch(err => res.status(422).json(err));
+  },
   getUser(req, res) {
     db.User
       .find({ _id: req.params.id })
