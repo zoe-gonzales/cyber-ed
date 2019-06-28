@@ -1,33 +1,22 @@
 /* eslint-disable no-undef */
 // eslint-disable-next-line prefer-destructuring
 
-const { expect, chai } = require('chai');
+const { expect } = require('chai');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
 const server = require('../server');
 const db = require('../models');
 
-// describe('Basic Mocha String Test', () => {
-//   it('should return number of charachters in a string', () => {
-//     assert.equal('Hello'.length, 5);
-//   });
-//   it('should return first charachter of the string', () => {
-//     assert.equal('Hello'.charAt(0), 'H');
-//   });
-//   it('should return sum value', () => {
-//     assert.equal(2 + 2, 4);
-//   });
-//   it('should have a type of string', () => {
-//     assert.typeOf(4, 'string');
-//   });
-// });
+chai.use(chaiHttp);
 
 describe('User Controller Actions', () => {
   beforeEach(() => {
-    request = chai.request(server);
-    return db.User.remove({});
+    chai.request(server);
+    return db.User.deleteMany({});
   });
 
   it('should find alls users in the database', (done) => {
-    db.User.bulkCreate([
+    db.User.create([
       {
         username: 'user',
         password: 'pass',
@@ -39,15 +28,36 @@ describe('User Controller Actions', () => {
         nickname: 'us-2',
       },
     ]).then(() => {
+      const request = chai.request(server);
       request.get('/api/users').end((err, res) => {
         const responseStatus = res.status;
         const responseBody = res.body;
 
+        // eslint-disable-next-line no-unused-expressions
         expect(err).to.be.null;
         expect(responseStatus).to.equal(200);
-        expect(responseBody).to.be.an('array');
+        expect(responseBody)
+          .to.be.an('array')
+          .that.has.lengthOf(2);
+
+        expect(responseBody[0])
+          .to.be.an('object')
+          .that.includes({
+            username: 'user',
+            password: 'pass',
+            nickname: 'us',
+          });
+
+        expect(responseBody[1])
+          .to.be.an('object')
+          .that.includes({
+            username: 'user-2',
+            password: 'pass-2',
+            nickname: 'us-2',
+          });
+        done();
       });
-      done();
-    });
+    })
+      .catch(error => console.log(error));
   });
 });
