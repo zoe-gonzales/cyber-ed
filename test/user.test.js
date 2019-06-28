@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 // eslint-disable-next-line prefer-destructuring
 
@@ -15,7 +16,8 @@ describe('User Controller Actions', () => {
     return db.User.deleteMany({});
   });
 
-  it('should find alls users in the database', (done) => {
+  // Get All Users
+  it('should find all users in the database', (done) => {
     db.User.create([
       {
         username: 'user',
@@ -59,5 +61,141 @@ describe('User Controller Actions', () => {
       });
     })
       .catch(error => console.log(error));
+  });
+
+  // Get User By Id
+  it('should find user by id', (done) => {
+    db.User.create([
+      {
+        username: 'user',
+        password: 'pass',
+        nickname: 'us',
+      },
+    ]).then(() => {
+      const request = chai.request(server);
+      request.get('/api/users').end((err, res) => {
+        const responseStatus = res.status;
+        const responseBody = res.body;
+
+        // eslint-disable-next-line no-unused-expressions
+        expect(err).to.be.null;
+        expect(responseStatus).to.equal(200);
+
+        // eslint-disable-next-line no-underscore-dangle
+        const id = responseBody[0]._id;
+        chai.request(server)
+          .get(`/api/users/${id}`).end((error, response) => {
+            const FindById = response.body;
+            const FindByIdStatus = response.status;
+            // eslint-disable-next-line no-unused-expressions
+            expect(error).to.be.null;
+            expect(FindByIdStatus).to.equal(200);
+            expect(FindById)
+              .to.be.an('array');
+
+            expect(FindById[0])
+              .to.be.an('object')
+              .that.includes({
+                username: 'user',
+                password: 'pass',
+                nickname: 'us',
+              });
+            done();
+          });
+      });
+    }).catch(error => console.log(error));
+  });
+
+  // Add a User
+  it('should add a user to the database', (done) => {
+    const newUser = {
+      username: 'user',
+      password: 'pass',
+      nickname: 'us',
+    };
+    const request = chai.request(server);
+    request.post('/api/users', newUser).end((err, res) => {
+      const responseStatus = res.status;
+      // eslint-disable-next-line no-unused-expressions
+      expect(err).to.be.null;
+      expect(responseStatus).to.equal(200);
+      done();
+    });
+  });
+
+  // Update a User
+  it('should find user by id and update', (done) => {
+    db.User.create([
+      {
+        username: 'user',
+        password: 'pass',
+        nickname: 'us',
+      },
+    ]).then(() => {
+      const request = chai.request(server);
+      request.get('/api/users').end((err, res) => {
+        const responseStatus = res.status;
+        const responseBody = res.body;
+
+        // eslint-disable-next-line no-unused-expressions
+        expect(err).to.be.null;
+        expect(responseStatus).to.equal(200);
+
+        // eslint-disable-next-line no-underscore-dangle
+        const id = responseBody[0]._id;
+        const newNickname = {
+          username: 'user',
+          password: 'pass',
+          nickname: 'bob',
+        };
+        chai.request(server)
+          .put(`/api/users/${id}`, newNickname).end((error, response) => {
+            const responseUpdate = response.body;
+            const responseUpdateStatus = response.status;
+            // eslint-disable-next-line no-unused-expressions
+            expect(error).to.be.null;
+            expect(responseUpdateStatus).to.equal(200);
+            expect(responseUpdate[0])
+              .to.be.an('object')
+              .that.includes({
+                nickname: 'bob',
+                _id: id,
+              });
+            done();
+          });
+      });
+    }).catch(error => console.log(error));
+  });
+
+  // Delete a User
+  it('should remove a user from the database', (done) => {
+    db.User.create([
+      {
+        username: 'user',
+        password: 'pass',
+        nickname: 'us',
+      },
+    ]).then(() => {
+      chai.request(server)
+        .get('/api/users').end((err, res) => {
+          const responseStatus = res.status;
+          const responseBody = res.body;
+          // eslint-disable-next-line no-unused-expressions
+          expect(err).to.be.null;
+          expect(responseStatus).to.equal(200);
+          // eslint-disable-next-line no-underscore-dangle
+          const id = responseBody[0]._id;
+          chai.request(server)
+            .delete(`/api/users/${id}`).end((error, response) => {
+              const deleteBody = response.body;
+              const deleteStatus = response.status;
+
+              expect(error).to.be.null;
+              expect(deleteStatus).to.equal(200);
+              expect(deleteBody).to.equal({});
+              done();
+            });
+        });
+    });
   });
 });
