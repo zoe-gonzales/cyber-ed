@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class SignIn extends Component {
   state = {
@@ -19,17 +20,21 @@ class SignIn extends Component {
 
   render() {
     return (
-      <Form>
-        <FormGroup>
-          <Label for="username">Username</Label>
-          <Input type="text" name="username" id="username" value={this.state.username} onChange={this.handleInputChange} />
-        </FormGroup>
-        <FormGroup>
-          <Label for="pass">Password</Label>
-          <Input type="password" name="userPassword" id="pass" value={this.state.userPassword} onChange={this.handleInputChange} />
-        </FormGroup>
-        <Button onClick={this.handleSubmit}>Submit</Button>
-      </Form>
+      <div>
+        <Form>
+          <FormGroup>
+            <Label for="username">Username</Label>
+            <Input type="text" name="username" id="username" value={this.state.username} onChange={this.handleInputChange} />
+          </FormGroup>
+          <FormGroup>
+            <Label for="pass">Password</Label>
+            <Input type="password" name="userPassword" id="pass" value={this.state.userPassword} onChange={this.handleInputChange} />
+          </FormGroup>
+          <Button onClick={this.handleSubmit}>Submit</Button>
+        </Form>
+        <Link to="/signup">Sign Up</Link>  
+      </div>
+      
     );
   }
 }
