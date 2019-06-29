@@ -19,11 +19,12 @@ const authenticate = passport => {
   // Main
   router.get('/', loggedInOnly, (req, res) => {
     // Something here
+    res.json('hi')
   });
   // Login View
-  router.get("/login", loggedOutOnly, (req, res) => {
-    // Something here    
-  });
+  // router.get("/login", loggedOutOnly, (req, res) => {
+  //   Something here    
+  // });
   // Login Handler
   router.post(
     "/login",
@@ -34,9 +35,9 @@ const authenticate = passport => {
     })
   );
   // Signup View
-  router.get("/signup", loggedOutOnly, (req, res) => {
-    // Something here
-  });
+  // router.get("/signup", loggedOutOnly, (req, res) => {
+  //   Something here
+  // });
   // Signup Handler
   router.post("/signup", (req, res, next) => {
     const { username, password } = req.body;

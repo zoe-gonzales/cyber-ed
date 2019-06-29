@@ -11,7 +11,7 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  password: {
+  userPassword: {
     type: String,
     required: true,
   },
@@ -24,11 +24,11 @@ const userSchema = new Schema({
 userSchema.plugin(uniqueValidator);
 
 userSchema.methods.validPassword = password => {
-  return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.userPassword);
 };
 
 userSchema.virtual('password').set(value => {
-  this.password = bcrypt.hashSync(value, 12);
+  this.userPassword = bcrypt.hashSync(value, 12);
 });
 
 const User = mongoose.model('User', userSchema);

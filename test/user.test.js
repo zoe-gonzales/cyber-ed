@@ -21,12 +21,12 @@ describe('User Controller Actions', () => {
     db.User.create([
       {
         username: 'user',
-        password: 'pass',
+        userPassword: 'pass',
         nickname: 'us',
       },
       {
         username: 'user-2',
-        password: 'pass-2',
+        userPassword: 'pass-2',
         nickname: 'us-2',
       },
     ]).then(() => {
@@ -45,7 +45,7 @@ describe('User Controller Actions', () => {
           .to.be.an('object')
           .that.includes({
             username: 'user',
-            password: 'pass',
+            userPassword: 'pass',
             nickname: 'us',
           });
 
@@ -53,7 +53,7 @@ describe('User Controller Actions', () => {
           .to.be.an('object')
           .that.includes({
             username: 'user-2',
-            password: 'pass-2',
+            userPassword: 'pass-2',
             nickname: 'us-2',
           });
         done();
@@ -67,7 +67,7 @@ describe('User Controller Actions', () => {
     db.User.create([
       {
         username: 'user',
-        password: 'pass',
+        userPassword: 'pass',
         nickname: 'us',
       },
     ]).then(() => {
@@ -95,7 +95,7 @@ describe('User Controller Actions', () => {
               .to.be.an('object')
               .that.includes({
                 username: 'user',
-                password: 'pass',
+                userPassword: 'pass',
                 nickname: 'us',
               });
             done();
@@ -108,7 +108,7 @@ describe('User Controller Actions', () => {
   it('should add a user to the database', (done) => {
     const newUser = {
       username: 'user',
-      password: 'pass',
+      userPassword: 'pass',
       nickname: 'us',
     };
     const request = chai.request(server);
@@ -126,7 +126,7 @@ describe('User Controller Actions', () => {
     db.User.create([
       {
         username: 'user',
-        password: 'pass',
+        userPassword: 'pass',
         nickname: 'us',
       },
     ]).then(() => {
@@ -142,7 +142,7 @@ describe('User Controller Actions', () => {
         const id = responseBody[0]._id;
         const newNickname = {
           username: 'user',
-          password: 'pass',
+          userPassword: 'pass',
           nickname: 'bob',
         };
         chai.request(server)

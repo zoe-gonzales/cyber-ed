@@ -36,7 +36,7 @@ const local = new LocalStrategy((username, password, done) => {
 });
 passport.use('local', local);
 
-app.use(routes)(passport);
+app.use(routes);
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cyberdb', { useNewUrlParser: true });
 
