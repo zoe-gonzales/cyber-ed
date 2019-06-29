@@ -35,7 +35,6 @@ describe('User Controller Actions', () => {
         const responseStatus = res.status;
         const responseBody = res.body;
 
-        // eslint-disable-next-line no-unused-expressions
         expect(err).to.be.null;
         expect(responseStatus).to.equal(200);
         expect(responseBody)
@@ -77,7 +76,6 @@ describe('User Controller Actions', () => {
         const responseStatus = res.status;
         const responseBody = res.body;
 
-        // eslint-disable-next-line no-unused-expressions
         expect(err).to.be.null;
         expect(responseStatus).to.equal(200);
 
@@ -116,7 +114,7 @@ describe('User Controller Actions', () => {
     const request = chai.request(server);
     request.post('/api/users', newUser).end((err, res) => {
       const responseStatus = res.status;
-      // eslint-disable-next-line no-unused-expressions
+
       expect(err).to.be.null;
       expect(responseStatus).to.equal(200);
       done();
@@ -137,7 +135,6 @@ describe('User Controller Actions', () => {
         const responseStatus = res.status;
         const responseBody = res.body;
 
-        // eslint-disable-next-line no-unused-expressions
         expect(err).to.be.null;
         expect(responseStatus).to.equal(200);
 
@@ -152,7 +149,7 @@ describe('User Controller Actions', () => {
           .put(`/api/users/${id}`, newNickname).end((error, response) => {
             const responseUpdate = response.body;
             const responseUpdateStatus = response.status;
-            // eslint-disable-next-line no-unused-expressions
+
             expect(error).to.be.null;
             expect(responseUpdateStatus).to.equal(200);
             expect(responseUpdate[0])
@@ -180,7 +177,7 @@ describe('User Controller Actions', () => {
         .get('/api/users').end((err, res) => {
           const responseStatus = res.status;
           const responseBody = res.body;
-          // eslint-disable-next-line no-unused-expressions
+
           expect(err).to.be.null;
           expect(responseStatus).to.equal(200);
           // eslint-disable-next-line no-underscore-dangle
