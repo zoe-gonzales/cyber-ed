@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const UseSignIn = (callback) => {
-  const [input, setInput] = useState({ username: '', userPassword: '' });
+const UseSignUp = (callback) => {
+  const [input, setInput] = useState({ username: '', userPassword: '', nickName: '' });
 
   const handleInputChange = (e) => {
     e.persist();
@@ -12,7 +12,7 @@ const UseSignIn = (callback) => {
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
     callback();
-    setInput({ username: '', userPassword: '' });
+    setInput({ username: '', userPassword: '', nickName: '' });
   };
 
   return {
@@ -22,4 +22,4 @@ const UseSignIn = (callback) => {
   };
 };
 
-export default UseSignIn;
+export default UseSignUp;
