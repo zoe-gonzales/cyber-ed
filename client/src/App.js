@@ -5,7 +5,8 @@
 /* eslint-disable jsx-quotes */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SignIn from './pages/SignIn';
+import SignInForm from './components/SignInForm';
+// import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 
@@ -15,7 +16,7 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path='/' component={SignIn} />
+            <Route exact path='/' component={SignInForm} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/home' component={Home} />
           </Switch>
