@@ -1,7 +1,5 @@
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable import/no-named-as-default-member */
-/* eslint-disable import/no-named-as-default */
 /* eslint-disable jsx-quotes */
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SignInForm from './components/SignInForm';
@@ -14,9 +12,9 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path='/' component={SignInForm} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/login' component={SignInForm} />
             <Route exact path='/signup' component={SignUpForm} />
-            <Route exact path='/home' component={Home} />
           </Switch>
         </div>
       </Router>

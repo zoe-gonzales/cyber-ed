@@ -23,12 +23,12 @@ const userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator);
 
-userSchema.methods.validPassword = password => {
+userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.userPassword);
 };
 
 userSchema.virtual('password').set(value => {
-  this.userPassword = bcrypt.hashSync(value, 12);
+  userSchema.userPassword = bcrypt.hashSync(value, 12);
 });
 
 const User = mongoose.model('User', userSchema);

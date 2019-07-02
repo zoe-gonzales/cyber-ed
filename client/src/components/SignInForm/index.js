@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Form,
@@ -6,17 +6,39 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import useSignInForm from './UseSignIn';
+import API from '../../utils/API';
 
 const SignInForm = () => {
-  function onSubmit() {
-    alert(`username: ${input.username} \n password: ${input.userPassword}`);
-  }
+  const [redirect, setRedirect] = useState(false);
 
-  const { input, handleInputChange, handleSubmit } = useSignInForm(onSubmit);
+  const redirectPage = () => {
+    setRedirect(true);
+  };
+
+  // eslint-disable-next-line consistent-return
+  const renderRedirect = () => {
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
+  };
+  const { input, handleInputChange, handleSubmit } = useSignInForm(() => {
+    const data = {
+      username: input.username,
+      userPassword: input.userPassword,
+    };
+    API.logInUser(data)
+      .then((res) => {
+        if (res.status === 200) {
+          redirectPage();
+        }
+      })
+      .catch(error => console.log(error));
+  });
   return (
     <div>
+      {renderRedirect()}
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="username">Username</Label>
