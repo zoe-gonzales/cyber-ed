@@ -10,4 +10,7 @@ export default {
   getAllUsers() {
     return axios.get('/api/users');
   },
+  clearUsers() {
+    return axios.delete('/api/users');
+  },
 };

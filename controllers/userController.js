@@ -35,4 +35,10 @@ module.exports = {
       .then(result => res.json(result))
       .catch(err => res.status(422).json(err));
   },
+  clearUsers(req, res) {
+    db.User
+      .remove({})
+      .then(result => res.json(result))
+      .catch(err => res.status(422).json(err));
+  }
 };

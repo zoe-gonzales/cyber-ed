@@ -27,30 +27,10 @@ const authenticate = passport => {
   });
   // Login Handler
   router.post('/login', 
-    // passport.authenticate('local', {
-    //   // successRedirect: '/',
-    //   failureRedirect: '/login',
-    //   // failureFlash: true
-    // }), function(req, res) {
-    //   console.log('user', req.user);
-    //   res.redirect('/');
-    // }
-    function(req, res, next) {
-      console.log(req.url);
-      passport.authenticate('local', function(err, user, info) {
-          console.log("authenticate");
-          console.log(err);
-          console.log(user);
-          console.log(info);
-          if (err) {
-            res.status(401).send(err);
-          } else if (!user) {
-            res.status(401).send(info);
-          } else {
-            next();
-          }
-      })(req, res);
-    }
+    passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+    })
   );
   // Signup View
   router.get('/signup', (req, res) => {
@@ -78,10 +58,10 @@ const authenticate = passport => {
   });
 
   // Error Handler
-  router.use((err, req, res) => {
-    console.error(err.stack);
-    res.status(500).end(err.stack);
-  });
+  // router.use((err, req, res) => {
+  //   console.error(err.stack);
+  //   res.status(500);
+  // });
 
   return router;
 }

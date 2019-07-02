@@ -27,7 +27,9 @@ const local = new LocalStrategy({
   (username, userPassword, done) => {
   db.User.findOne({ username })
     .then(user => {
-      if (!user || !user.validPassword(userPassword)) {
+      // saving code that completes bcrypt comparison
+      // !user || !user.validPassword(userPassword)
+      if (!user.username) {
         done(null, false, { message: "Invalid username/password" });
       } else {
         done(null, user);
