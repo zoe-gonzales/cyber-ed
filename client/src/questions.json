@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "question": "Using the same password more than once is okay if the account doesn't contain sensitive information.",
+        "answers": [
+            true,
+            false
+        ]
+    },
+    {
+        "id": 2,
+        "question": "The best way to store your passwords is",
+        "answers": [
+            "saving them in the browser and hitting reset each time you want to log in.",
+            "using a password manager like LastPass or 1Password.",
+            "writing them down."
+        ]
+    },
+    {
+        "id": 3,
+        "question": "What is multi-factor authentication?",
+        "answers": [
+            "A method of comparing a user's phone number against the one associated with their account.",
+            "Using more than one method to verify the identity of a user.",
+            "Not sure"
+        ]
+    },
+    {
+        "id": 4,
+        "question": "To protect your phone from SIM hacking",
+        "answers": [
+            "Call your mobile carrier to add a PIN to your card",
+            "Use a different phone number for two-factor authentication, like a Google Voice or Skype number.",
+            "Never save any passwords in the browser on your phone."
+        ]
+    },
+    {
+        "id": 5,
+        "question": "If a hacker gains access to your SIM card, the first account they are most likely to break into is",
+        "answers": [
+            "Online banking",
+            "Email",
+            "Social media"
+        ]
+    },
+    {
+        "id": 6,
+        "question": "Q6",
+        "answers": [
+            "a",
+            "b",
+            "c"
+        ]
+    },
+    {
+        "id": 7,
+        "question": "Q7",
+        "answers": [
+            "a",
+            "b",
+            "c"
+        ]
+    },
+    {
+        "id": 8,
+        "question": "A credit freeze can have the benefit of",
+        "answers": [
+            "increasing your credit score since you won't be opening new lines of credit.",
+            "decreasing the chances of credit fraud by disabling anyone (including yourself) from opening new lines of credit.",
+            "decreasing your interest rates on current loans or credit cards."
+        ]
+    },
+    {
+        "id": 9,
+        "question": "The difference between http and https is",
+        "answers": [
+            "they are the same",
+            "https is used more often in payment submissions",
+            "Not sure"
+        ]
+    },
+    {
+        "id": 10,
+        "question": "If you've been hacked, the first thing you should do is",
+        "answers": [
+            "confront the hacker directly if you have their contact information.",
+            "delete all sensitive data from your accounts.",
+            "change your passwords",
+            "set up two-factor authentication"
+        ]
+    }
+]
