@@ -10,6 +10,7 @@ import Home from './pages/Home/index';
 import Quiz from './pages/Quiz';
 import About from './pages/About';
 import Learn from './pages/Learn';
+import NotFound from './pages/NotFound';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path='/quiz' component={Quiz} />
             <Route exact path='/about' component={About} />
             <Route exact path='/learn' component={Learn} />
+            <Route component={NotFound} />
           </Switch>
         </div>
         <Footer />

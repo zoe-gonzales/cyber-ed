@@ -14,7 +14,7 @@ const Learn = () => {
         <Col md="2" />
         <Col md="8">
           <p className="display-4">
-              More Resources
+            More Resources
           </p>
           <p className="lead">
             I am not an expert in security, only an enthusiast.

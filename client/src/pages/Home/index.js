@@ -4,7 +4,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import MainBtn from '../../components/MainBtn';
+import LinkBtn from '../../components/LinkBtn';
 import API from '../../utils/API';
 import './style.css';
 
@@ -28,7 +28,7 @@ const Home = () => {
             <p className="lead text-center">
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               <br />
-              <MainBtn className="btn" text="Take the Quiz" path="/quiz" />
+              <LinkBtn className="btn" path="/quiz">Take the Quiz</LinkBtn>
             </p>
           </Col>
           <Col md="3" />

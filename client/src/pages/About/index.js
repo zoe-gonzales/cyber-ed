@@ -4,7 +4,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import MainBtn from '../../components/MainBtn';
+import LinkBtn from '../../components/LinkBtn';
 import './style.css';
 
 const About = () => {
@@ -19,7 +19,7 @@ const About = () => {
           <div className="lead item">
             This is where I will put info that ppl can read about why i made this app.
           </div>
-          <MainBtn className="item" text="Back" path="/" />
+          <LinkBtn className="item" path="/">Back</LinkBtn>
         </Col>
         <Col md="2" />
       </Row>
