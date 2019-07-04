@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import './style.css';
 
-const NavBar = ({ links }) => {
+const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -25,13 +25,18 @@ const NavBar = ({ links }) => {
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
-          {links.map(({ path, text }) => {
-            return (
-              <NavItem>
-                <NavLink href={path}>{text}</NavLink>
-              </NavItem>
-            );
-          })}
+          <NavItem>
+            <NavLink href="/about">About</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/learn">Learn</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/login">Log In</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/signup">Sign Up</NavLink>
+          </NavItem>
         </Nav>
       </Collapse>
     </Navbar>

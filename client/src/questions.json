@@ -3,8 +3,8 @@
         "id": 1,
         "question": "Using the same password more than once is okay if the account doesn't contain sensitive information.",
         "answers": [
-            true,
-            false
+            "true",
+            "false"
         ]
     },
     {

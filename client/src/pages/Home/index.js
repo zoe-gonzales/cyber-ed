@@ -4,9 +4,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import NavBar from '../../components/NavBar';
 import MainBtn from '../../components/MainBtn';
-import Footer from '../../components/Footer';
 import API from '../../utils/API';
 import './style.css';
 
@@ -17,28 +15,8 @@ const Home = () => {
       .catch(error => console.log(error));
   });
 
-  const navLinks = [
-    {
-      path: '/about',
-      text: 'About',
-    },
-    {
-      path: '/learn',
-      text: 'Learn',
-    },
-    {
-      path: '/login',
-      text: 'Log In',
-    },
-    {
-      path: '/signup',
-      text: 'Sign Up',
-    },
-  ];
-
   return (
     <div>
-      <NavBar links={navLinks} />
       <Container>
         <Row>
           <Col md="3" />
@@ -50,13 +28,12 @@ const Home = () => {
             <p className="lead text-center">
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               <br />
-              <MainBtn className="btn" text="Take the Quiz" />
+              <MainBtn className="btn" text="Take the Quiz" path="/quiz" />
             </p>
           </Col>
           <Col md="3" />
         </Row>
       </Container>
-      <Footer />
     </div>
   );
 };
