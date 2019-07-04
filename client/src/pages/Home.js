@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import NavBar from '../components/NavBar';
 import API from '../utils/API';
 
 const Home = () => {
@@ -8,7 +9,30 @@ const Home = () => {
       .catch(error => console.log(error));
   });
 
-  return <div>This is the home page.</div>;
+  const navLinks = [
+    {
+      path: '/about',
+      text: 'About',
+    },
+    {
+      path: '/learn',
+      text: 'Learn',
+    },
+    {
+      path: '/login',
+      text: 'Log In',
+    },
+    {
+      path: '/signup',
+      text: 'Sign Up',
+    },
+  ];
+
+  return (
+    <div>
+      <NavBar links={navLinks} />
+    </div>
+  );
 };
 
 export default Home;
