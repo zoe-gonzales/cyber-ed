@@ -1,0 +1,11 @@
+.link {
+    color: #202528;
+    margin: 1.2rem 2rem;
+    float: right;
+}
+
+.link:hover {
+    color: #3CB371;
+    font-size: bold;
+    text-decoration: none;
+}
