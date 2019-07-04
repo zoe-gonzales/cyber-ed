@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
-import Home from './pages/Home';
+import Home from './pages/Home/index';
 
 class App extends Component {
   render() {

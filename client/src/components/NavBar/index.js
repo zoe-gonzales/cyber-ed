@@ -9,11 +9,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from 'reactstrap';
+import './style.css';
 
 const NavBar = ({ links }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,23 +20,21 @@ const NavBar = ({ links }) => {
   };
 
   return (
-    <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Cyber Ed</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            {links.map(({ path, text }) => {
-              return (
-                <NavItem>
-                  <NavLink href={path}>{text}</NavLink>
-                </NavItem>
-              );
-            })}
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+    <Navbar color="faded" light expand="md" style={{ backgroundColor: '#BAE8C8' }}>
+      <NavbarBrand href="/" style={{ fontStyle: 'italic' }}>Cyber Ed</NavbarBrand>
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="ml-auto" navbar>
+          {links.map(({ path, text }) => {
+            return (
+              <NavItem>
+                <NavLink href={path}>{text}</NavLink>
+              </NavItem>
+            );
+          })}
+        </Nav>
+      </Collapse>
+    </Navbar>
   );
 };
 
