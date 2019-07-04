@@ -15,7 +15,7 @@ const QuestionCard = () => {
   return (
     <Row>
       <Col md="2" />
-      <Col sm="8">
+      <Col md="8">
         <Card body className="card-container">
           <CardTitle>
             <ProgressBar quizProgress={40} />

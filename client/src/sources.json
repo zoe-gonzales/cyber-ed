@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "Cyber podcast by Motherboard",
+        "url": "https://open.spotify.com/show/3smcGJaAF6F7sioqFDQjzn?si=WH4wJxPGTeSdLeQVj3bFMg"
+    },
+    {
+        "id": 2,
+        "name": "Reply All podcast",
+        "url": "https://open.spotify.com/show/7gozmLqbcbr6PScMjc0Zl4?si=OMg7-o8YR0qWATEJnpapEA"
+    },
+    {
+        "id": 3,
+        "name": "Why Hackers Hack",
+        "url": "https://securityboulevard.com/2019/06/why-do-hackers-hack-3-reasons-explained/"
+    },
+    {
+        "id": 4,
+        "name": "have i been pwned?",
+        "url": "https://haveibeenpwned.com/"
+    },
+    {
+        "id": 5,
+        "name": "Lookout for Android",
+        "url": "https://www.lookout.com/m/android"
+    },
+    {
+        "id": 6,
+        "name": "The Privacy, Security, & OSINT Show",
+        "url": "https://soundcloud.com/user-98066669"
+    },
+    {
+        "id": 7,
+        "name": "How to Protect Yourself Against a SIM Swap Attack (Wired.com)",
+        "url": "https://www.wired.com/story/sim-swap-attack-defend-phone/"
+    },
+    {
+        "id": 8,
+        "name": "How to Protect Yourself from SIM Swapping Hacks (Motherboard)",
+        "url": "https://www.vice.com/en_us/article/zm8a9y/how-to-protect-yourself-from-sim-swapping-hacks"
+    }
+]

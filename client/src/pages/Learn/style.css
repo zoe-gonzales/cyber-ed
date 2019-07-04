@@ -1,0 +1,10 @@
+.source {
+    color: #202528;
+    font-style: italic;
+}
+
+.source:hover {
+    color: #202528;
+    text-decoration: none;
+    font-weight: bold;
+}

@@ -8,6 +8,8 @@ import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 import Home from './pages/Home/index';
 import Quiz from './pages/Quiz';
+import About from './pages/About';
+import Learn from './pages/Learn';
 
 class App extends Component {
   render() {
@@ -20,6 +22,8 @@ class App extends Component {
             <Route exact path='/login' component={SignInForm} />
             <Route exact path='/signup' component={SignUpForm} />
             <Route exact path='/quiz' component={Quiz} />
+            <Route exact path='/about' component={About} />
+            <Route exact path='/learn' component={Learn} />
           </Switch>
         </div>
         <Footer />
