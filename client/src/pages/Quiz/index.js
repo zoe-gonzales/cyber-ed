@@ -29,7 +29,7 @@ const QuestionCard = () => {
     }
   };
 
-  const quizComplete = (questionsAnswered) => {
+  const quizInComplete = (questionsAnswered) => {
     let completed;
     if (questionsAnswered < 10) {
       completed = true;
@@ -44,7 +44,7 @@ const QuestionCard = () => {
     const { value } = e.target;
     answers.push(value);
     const completeQs = answers.length;
-    if (quizComplete(completeQs)) {
+    if (quizInComplete(completeQs)) {
       setAnswers(answers);
       setProgress(progress + 10);
       setCurrentQIndex(currentQIndex + 1);

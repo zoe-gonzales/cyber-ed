@@ -18,6 +18,7 @@ import './style.css';
 
 const SignInForm = () => {
   const [redirect, setRedirect] = useState(false);
+  const [invalidCred, setInvalidCred] = useState(false);
 
   const redirectPage = () => {
     setRedirect(true);
@@ -40,7 +41,10 @@ const SignInForm = () => {
           redirectPage();
         }
       })
-      .catch(error => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setInvalidCred(true);
+      });
   });
   return (
     <Container>
@@ -59,6 +63,7 @@ const SignInForm = () => {
                   <Label for="pass">Password</Label>
                   <Input type="password" name="userPassword" id="pass" value={input.userPassword} onChange={handleInputChange} />
                 </FormGroup>
+                {invalidCred ? <div>Invalid username or password.</div> : null}
                 <Button type="submit">Submit</Button>
                 <Link to="/signup" className="link">Sign Up</Link>
               </Form>
