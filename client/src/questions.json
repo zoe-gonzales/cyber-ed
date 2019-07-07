@@ -5,7 +5,8 @@
         "answers": [
             "true",
             "false"
-        ]
+        ],
+        "bestAnswer": 1
     },
     {
         "id": 2,
@@ -14,7 +15,8 @@
             "saving them in the browser and hitting reset each time you want to log in.",
             "using a password manager like LastPass or 1Password.",
             "writing them down."
-        ]
+        ],
+        "bestAnswer": 1
     },
     {
         "id": 3,
@@ -23,7 +25,8 @@
             "A method of comparing a user's phone number against the one associated with their account.",
             "Using more than one method to verify the identity of a user.",
             "Not sure"
-        ]
+        ],
+        "bestAnswer": 1
     },
     {
         "id": 4,
@@ -31,8 +34,10 @@
         "answers": [
             "Call your mobile carrier to add a PIN to your card",
             "Use a different phone number for two-factor authentication, like a Google Voice or Skype number.",
-            "Never save any passwords in the browser on your phone."
-        ]
+            "Never save any passwords in the browser on your phone.",
+            "1 & 2"
+        ],
+        "bestAnswer": 3
     },
     {
         "id": 5,
@@ -41,7 +46,8 @@
             "Online banking",
             "Email",
             "Social media"
-        ]
+        ],
+        "bestAnswer": 1
     },
     {
         "id": 6,
@@ -50,7 +56,8 @@
             "a",
             "b",
             "c"
-        ]
+        ],
+        "bestAnswer": 1
     },
     {
         "id": 7,
@@ -59,25 +66,28 @@
             "a",
             "b",
             "c"
-        ]
+        ],
+        "bestAnswer": 1
     },
     {
         "id": 8,
         "question": "A credit freeze can have the benefit of",
         "answers": [
             "increasing your credit score since you won't be opening new lines of credit.",
-            "decreasing the chances of credit fraud by disabling anyone (including yourself) from opening new lines of credit.",
+            "decreasing the chances of credit fraud by disabling anyone from opening new lines of credit.",
             "decreasing your interest rates on current loans or credit cards."
-        ]
+        ],
+        "bestAnswer": 1
     },
     {
         "id": 9,
         "question": "The difference between http and https is",
         "answers": [
+            "https is more secure",
             "they are the same",
-            "https is used more often in payment submissions",
             "Not sure"
-        ]
+        ],
+        "bestAnswer": 0
     },
     {
         "id": 10,
@@ -87,6 +97,7 @@
             "delete all sensitive data from your accounts.",
             "change your passwords",
             "set up two-factor authentication"
-        ]
+        ],
+        "bestAnswer": 2
     }
 ]
