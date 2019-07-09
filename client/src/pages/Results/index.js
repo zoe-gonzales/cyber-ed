@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Row,
@@ -15,6 +15,12 @@ import questions from '../../questions.json';
 import './style.css';
 
 const Results = () => {
+  const [answers, setAnswers] = useState([]);
+  useEffect(() => {
+    const answersString = localStorage.getItem('answers');
+    const answersArray = answersString.split(',');
+    setAnswers(answersArray);
+  }, []);
   return (
     <Container className="wrapper">
       <Row>
@@ -31,7 +37,7 @@ const Results = () => {
                 <CardText className="lead q-text">
                   <span className="answers">Your answer</span>
                   <br />
-                  {question.answers[0]}
+                  {answers[question.id - 1]}
                 </CardText>
                 <ToggleModal
                   toggle={show => <Button onClick={show} className="more" id={question.id}>More</Button>}

@@ -49,7 +49,10 @@ const QuestionCard = () => {
       setProgress(progress + 10);
       setCurrentQIndex(currentQIndex + 1);
     } else {
-      if (answers.length === 10) redirectPage();
+      if (answers.length === 10) {
+        localStorage.setItem('answers', answers);
+        redirectPage();
+      }
     }
   };
 
