@@ -17,6 +17,7 @@ import API from '../../utils/API';
 
 const SignUpForm = () => {
   const [redirect, setRedirect] = useState(false);
+  const [userName, setUserName] = useState('');
 
   const redirectPage = () => {
     setRedirect(true);
@@ -25,7 +26,7 @@ const SignUpForm = () => {
   // eslint-disable-next-line consistent-return
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to={`/user/${userName}`} />;
     }
   };
 
@@ -38,6 +39,8 @@ const SignUpForm = () => {
     API.signUpUser(data)
       .then((res) => {
         if (res.status === 200) {
+          const user = JSON.parse(res.config.data);
+          setUserName(user.username);
           redirectPage();
         }
       })

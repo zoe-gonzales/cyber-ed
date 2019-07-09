@@ -19,6 +19,7 @@ import './style.css';
 const SignInForm = () => {
   const [redirect, setRedirect] = useState(false);
   const [invalidCred, setInvalidCred] = useState(false);
+  const [userName, setUserName] = useState('');
 
   const redirectPage = () => {
     setRedirect(true);
@@ -27,7 +28,7 @@ const SignInForm = () => {
   // eslint-disable-next-line consistent-return
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to={`/user/${userName}`} />;
     }
   };
   const { input, handleInputChange, handleSubmit } = useSignInForm(() => {
@@ -38,6 +39,8 @@ const SignInForm = () => {
     API.logInUser(data)
       .then((res) => {
         if (res.status === 200) {
+          const user = JSON.parse(res.config.data);
+          setUserName(user.username);
           redirectPage();
         }
       })

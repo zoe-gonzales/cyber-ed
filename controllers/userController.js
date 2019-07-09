@@ -9,7 +9,7 @@ module.exports = {
   },
   getUser(req, res) {
     db.User
-      .find({ _id: req.params.id })
+      .find({ username: req.params.user })
       .then(userData => res.json(userData))
       .catch(err => res.status(422).json(err));
   },
@@ -22,7 +22,7 @@ module.exports = {
   updateUser(req, res) {
     db.User
       .updateOne(
-        { _id: req.params.id },
+        { username: req.params.user },
         { $set: req.body },
       )
       .then(result => res.json(result))
@@ -30,7 +30,7 @@ module.exports = {
   },
   deleteUser(req, res) {
     db.User
-      .find({ _id: req.params.id })
+      .find({ username: req.params.user })
       .then(userData => userData.remove())
       .then(result => res.json(result))
       .catch(err => res.status(422).json(err));
