@@ -6,7 +6,8 @@
             "true",
             "false"
         ],
-        "bestAnswer": 1
+        "bestAnswer": 1,
+        "comment": "The first step in having security on all accounts is using unique passwords for each one. This is important, even for accounts that don't contain critical information, like credit card numbers."
     },
     {
         "id": 2,
@@ -16,7 +17,8 @@
             "using a password manager like LastPass or 1Password.",
             "writing them down."
         ],
-        "bestAnswer": 1
+        "bestAnswer": 1,
+        "comment": "While password managers aren't perfect (none can protect you 100% from hacking), they are often the best resource for saving and generating unique passwords for all of your accounts."
     },
     {
         "id": 3,
@@ -26,7 +28,8 @@
             "Using more than one method to verify the identity of a user.",
             "Not sure"
         ],
-        "bestAnswer": 1
+        "bestAnswer": 1,
+        "comment": "Multi-factor auth (and more commonly, two-factor) is recommended by most security experts as a way to lessen the chances of an attack. It's best to set up two-factor auth with a separate email or phone number not associated with your phone (Skype or Google Voice number)."
     },
     {
         "id": 4,
@@ -37,7 +40,8 @@
             "Never save any passwords in the browser on your phone.",
             "1 & 2"
         ],
-        "bestAnswer": 3
+        "bestAnswer": 3,
+        "comment": "SIM card hacking occurs when a hacker pretending to be you contacts your mobile carrier and convinces them that you've changed phones. Using your phone number, they can log into your account and surpass two-factor authentication using your number on their device. Adding a PIN to your phone's SIM card is a good practice to reduce the chances that it will be hacked. Even better, use a phone number not attached to the SIM card so that hackers can't access it as easily."
     },
     {
         "id": 5,
@@ -47,7 +51,8 @@
             "Email",
             "Social media"
         ],
-        "bestAnswer": 1
+        "bestAnswer": 1,
+        "comment": "Email is usually the first account they will target since it contains the most information about many different sites. They will also target bank accounts, particularly for high profile investors. Social media hacks often are related to the popularity of the account's handle, which may be hacked and sold without the account's owner knowledge."
     },
     {
         "id": 6,
@@ -57,7 +62,8 @@
             "b",
             "c"
         ],
-        "bestAnswer": 1
+        "bestAnswer": 1,
+        "comment": "Some comments here, yada yada"
     },
     {
         "id": 7,
@@ -67,17 +73,19 @@
             "b",
             "c"
         ],
-        "bestAnswer": 1
+        "bestAnswer": 1,
+        "comment": "Some comments here, yada yada"
     },
     {
         "id": 8,
         "question": "A credit freeze can have the benefit of",
         "answers": [
             "increasing your credit score since you won't be opening new lines of credit.",
-            "decreasing the chances of credit fraud by disabling anyone from opening new lines of credit.",
+            "decreasing the chances of credit fraud by temporarily disabling anyone from opening new lines of credit.",
             "decreasing your interest rates on current loans or credit cards."
         ],
-        "bestAnswer": 1
+        "bestAnswer": 1,
+        "comment": "Credit freezes are a great way to safeguard your credit and prevent fradulent lines of credit from being opened. A freeze won't affect your credit score, but it will require you to lift the freeze in order to rent an apartment, apply for a job, open a new account, etc."
     },
     {
         "id": 9,
@@ -87,17 +95,18 @@
             "they are the same",
             "Not sure"
         ],
-        "bestAnswer": 0
+        "bestAnswer": 0,
+        "comment": "HTTPS is more secure than HTTP. Never submit sensitive information through a form where the url begins with HTTP. This could put you at risk for an attack."
     },
     {
         "id": 10,
         "question": "If you've been hacked, the first thing you should do is",
         "answers": [
-            "confront the hacker directly if you have their contact information.",
             "delete all sensitive data from your accounts.",
             "change your passwords",
             "set up two-factor authentication"
         ],
-        "bestAnswer": 2
+        "bestAnswer": 2,
+        "comment": "While several of these are good ideas (set up two-factor, delete sensitive data) the first action you should take is changing your passwords."
     }
 ]

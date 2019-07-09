@@ -9,6 +9,8 @@ import {
   CardText,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import ResultsModal from '../../components/Modal';
+import ToggleModal from '../../components/Modal/ToggleModal';
 import questions from '../../questions.json';
 import './style.css';
 
@@ -31,7 +33,16 @@ const Results = () => {
                   <br />
                   {question.answers[0]}
                 </CardText>
-                <Button className="more">More</Button>
+                <ToggleModal
+                  toggle={show => <Button onClick={show} className="more" id={question.id}>More</Button>}
+                  content={hide => (
+                    <ResultsModal>
+                      {question.comment}
+                      <br />
+                      <Button onClick={hide} style={{ float: 'right' }}>Close</Button>
+                    </ResultsModal>
+                  )}
+                />
               </Card>
             </Col>
           );
