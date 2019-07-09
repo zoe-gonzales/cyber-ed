@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const quizController = require('../../controllers/quizController');
 
-router.route('/')
+router.route('/:user')
   .get(quizController.getAllQuizzes)
   .post(quizController.addQuiz);
 

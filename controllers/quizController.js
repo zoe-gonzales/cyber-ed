@@ -16,6 +16,12 @@ module.exports = {
   addQuiz(req, res) {
     db.Quiz
       .create(req.body)
+      .then(quizData => {
+        return db.User
+          .findOneAndUpdate({ user: req.params.user },
+            { $push: { quizzes: quizData } },
+            { new: true });
+      })
       .then(result => res.json(result))
       .catch(err => res.status(422).json(err));
   },

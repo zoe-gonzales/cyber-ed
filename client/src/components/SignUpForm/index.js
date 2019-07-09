@@ -41,7 +41,16 @@ const SignUpForm = () => {
         if (res.status === 200) {
           const user = JSON.parse(res.config.data);
           setUserName(user.username);
-          redirectPage();
+          let answers = localStorage.getItem('answers');
+          answers = answers.split(',');
+          if (answers.length === 10) {
+            API.addQuiz(user.username, answers)
+              .then((result) => {
+                console.log(result);
+                redirectPage();
+              })
+              .catch(error => console.log(error));
+          } else redirectPage();
         }
       })
       .catch(error => console.log(error));

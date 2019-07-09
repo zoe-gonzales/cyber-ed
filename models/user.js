@@ -19,6 +19,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  quizzes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Quiz',
+  }],
 });
 
 userSchema.plugin(uniqueValidator);

@@ -16,4 +16,7 @@ export default {
   clearUsers() {
     return axios.delete('/api/users');
   },
+  addQuiz(user, data) {
+    return axios.post(`/api/quizzes/${user}`, data);
+  },
 };
