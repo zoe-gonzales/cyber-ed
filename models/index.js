@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 module.exports = {
   User: require('./user'),
-  // Quiz: require('./quiz'),
+  Quiz: require('./quiz'),
   // Answer: require('./answer'),
 };

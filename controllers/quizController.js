@@ -14,13 +14,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   addQuiz(req, res) {
+    const answers = { answers: req.body };
     db.Quiz
-      .create(req.body)
+      .create(answers)
       .then(quizData => {
         return db.User
-          .findOneAndUpdate({ user: req.params.user },
+          .findOneAndUpdate(
+            { username: req.params.user },
             { $push: { quizzes: quizData } },
-            { new: true });
+            { new: true }
+          );
       })
       .then(result => res.json(result))
       .catch(err => res.status(422).json(err));

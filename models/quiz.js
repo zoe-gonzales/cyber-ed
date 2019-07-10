@@ -4,10 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const quizSchema = new Schema({
-  answers: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Answer',
-  }],
+  answers: Array
 });
 
 const Quiz = mongoose.model('Quiz', quizSchema);
