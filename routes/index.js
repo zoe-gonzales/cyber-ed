@@ -1,7 +1,10 @@
-const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 const router = require('express').Router();
+// const jwt = require('jsonwebtoken');
 const apiRoutes = require('./api');
 const User = require('../models/user');
+require('../passport');
 
 router.use('/api', apiRoutes);
 
@@ -26,12 +29,33 @@ const authenticate = passport => {
     res.json('logged in');
   });
   // Login Handler
-  router.post('/login', 
-    passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/login',
-    })
-  );
+  router.post('/login', (req, res, next) => {
+    passport.authenticate('local', { session: false }, function (err, user, info) {
+      if (err || !user) {
+        res.status(400).json({
+          message: 'User not found',
+          user: user
+        });
+      }
+      req.login(user, { session: false }, (err) => {
+        if (err) res.send(err);
+        // const token = jwt.sign(user.toJSON(), process.env.SECRET, { expiresIn: 86400 * 70 });
+        // jwt.verify(token, process.env.SECRET, function(err, data){
+        console.log(user);
+        res.send({
+          message: 'Logged in Successfully',
+          redirect: `/user/${user.username}`,
+          // jwtToken: `JWT ${token}`,
+          success: true,
+          user: user,
+          // token: 'Bearer ' + token
+        });
+      //  })
+      })(req, res);
+    // next();
+  })
+});
+
   // Signup View
   router.get('/signup', (req, res) => {
     res.json('signed up');
@@ -57,17 +81,7 @@ const authenticate = passport => {
     res.redirect('/login');
   });
 
-  // Error Handler
-  // router.use((err, req, res) => {
-  //   console.error(err.stack);
-  //   res.status(500);
-  // });
-
   return router;
 }
-
-// router.use((req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
 
 module.exports = authenticate;

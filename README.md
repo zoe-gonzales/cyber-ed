@@ -6,6 +6,8 @@ This app helps the average person with a digital presence to protect their priva
 
 ## Planning
 
+[Kanban](https://github.com/zoe-gonzales/cyber-ed/projects/1)
+
 ### User Stories
 
 **Feature #1:** Individual Security Quiz + Results
