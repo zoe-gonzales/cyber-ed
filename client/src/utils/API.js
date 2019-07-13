@@ -1,8 +1,14 @@
 const axios = require('axios');
 
+const axiosConfig = {
+  headers: {
+    
+  },
+};
+
 export default {
   logInUser(data) {
-    return axios.post('/login', data);
+    return axios.post('/login', data, axiosConfig);
   },
   signUpUser(data) {
     return axios.post('/signup', data);

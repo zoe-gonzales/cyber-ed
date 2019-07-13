@@ -10,7 +10,13 @@ module.exports = {
   getUser(req, res) {
     db.User
       .find({ username: req.params.user })
-      .then(userData => res.json(userData))
+      .then(user => {
+        res.json({
+          message: 'Secure route accessed',
+          user: user,
+          token: req.query.secret_token
+        });
+      })
       .catch(err => res.status(422).json(err));
   },
   addUser(req, res) {

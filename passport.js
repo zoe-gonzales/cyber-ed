@@ -11,40 +11,37 @@ const local = new LocalStrategy({
   usernameField: 'username',
   passwordField: 'userPassword'
 },
-  (username, /* userPassword, */ done) => {
-  User.findOne({ username: username })
-    .then(user => {
-      // saving code that completes bcrypt comparison
-      // !user || !user.validPassword(userPassword)
-      if (!user) {
-        done(null, false, { message: "Invalid username/password" });
-      } else {
-        done(null, user);
+  async (username, userPassword, done) => {
+    try {
+      const user = await User.findOne({ username });
+      if( !user ){
+        return done(null, false, { message : 'User not found'});
       }
-    })
-    .catch(err => done(err));
+      // const validate = await user.isValidPassword(userPassword);
+      // if( !validate ){
+      //   return done(null, false, { message : 'Wrong Password'});
+      // }
+      return done(null, user, { message : 'Logged in Successfully'});
+    } 
+    catch (error) {
+      return done(error);
+    }
 });
 
 const localJWT = new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.SECRET
-},
-  function(jwtPayload, done) {
-    console.log(jwtPayload);
-    return User.findOne({id: jwt_payload.sub}, function(err, user) {
-      if (err) {
-          return done(err, false);
-      }
-      if (user) {
-          return done(null, user);
-      } else {
-          return done(null, false);
-      }
-  });
-  }
+}, async (token, done) => {
+    try {
+      return done(null, token.user);
+    } 
+    catch (error) {
+      done(error);
+    }
+}
 );
 
 passport.use('local', local);
-// passport.use(localJWT);
+passport.use(localJWT);
 
 module.export = passport;

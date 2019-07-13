@@ -42,6 +42,8 @@ const SignInForm = () => {
           const user = JSON.parse(res.config.data);
           setUserName(user.username);
           redirectPage();
+        } else {
+          console.log(res);
         }
       })
       .catch((error) => {

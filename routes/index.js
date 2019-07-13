@@ -1,10 +1,9 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const router = require('express').Router();
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const apiRoutes = require('./api');
 const User = require('../models/user');
-require('../passport');
 
 router.use('/api', apiRoutes);
 
@@ -29,32 +28,25 @@ const authenticate = passport => {
     res.json('logged in');
   });
   // Login Handler
-  router.post('/login', (req, res, next) => {
-    passport.authenticate('local', { session: false }, function (err, user, info) {
-      if (err || !user) {
-        res.status(400).json({
-          message: 'User not found',
-          user: user
-        });
+  router.post('/login', loggedOutOnly, async (req, res, next) => {
+    passport.authenticate('local', async (err, user, info) => {     
+      try {
+        if(err || !user){
+          const error = new Error('An Error occured');
+          return next(error);
+        }
+        req.login(user, { session : false }, async (error) => {
+          if (error) return next(error);
+          const body = { username: user.username, userPassword: user.userPassword };
+          const token = jwt.sign({ user: body }, process.env.SECRET);
+          return res.json({ token });
+        });     
+      } 
+      catch (error) {
+        return next(error);
       }
-      req.login(user, { session: false }, (err) => {
-        if (err) res.send(err);
-        // const token = jwt.sign(user.toJSON(), process.env.SECRET, { expiresIn: 86400 * 70 });
-        // jwt.verify(token, process.env.SECRET, function(err, data){
-        console.log(user);
-        res.send({
-          message: 'Logged in Successfully',
-          redirect: `/user/${user.username}`,
-          // jwtToken: `JWT ${token}`,
-          success: true,
-          user: user,
-          // token: 'Bearer ' + token
-        });
-      //  })
-      })(req, res);
-    // next();
-  })
-});
+    })(req, res, next);
+  });
 
   // Signup View
   router.get('/signup', (req, res) => {
@@ -76,7 +68,7 @@ const authenticate = passport => {
       });
   });
   // Logout Handler
-  router.all('/logout', function(req, res) {
+  router.all('/logout', loggedInOnly, function(req, res) {
     req.logout();
     res.redirect('/login');
   });
