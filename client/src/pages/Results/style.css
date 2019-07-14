@@ -31,3 +31,46 @@
     font-weight: bold;
     color: #164029;
 }
+
+@media screen and (max-width: 980px) {
+    .question-body {
+        height: 35.5rem;
+    }
+
+    .more {
+        top: 31.5rem;
+        width: 85%;
+    }
+
+    .action {
+        height: 35.5rem;
+    }
+}
+
+/* @media screen and (max-width: 768px) {} */
+
+@media screen and (max-width: 640px) {
+    .question-body {
+        height: 22rem;
+    }
+
+    .more {
+        width: 95%;
+        top: 18rem;
+    }
+
+    .action {
+        height: 22rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .question-body {
+        height: 29rem;
+    }
+
+    .more {
+        width: 90%;
+        top: 25rem;
+    }
+}

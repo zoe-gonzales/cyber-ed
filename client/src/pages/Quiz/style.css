@@ -5,3 +5,10 @@
 .btn {
     margin: .8rem 0;
 }
+
+@media screen and (max-width: 640px) {
+    .card-container {
+        width: 90%;
+        margin: 3rem auto;
+    }
+}
