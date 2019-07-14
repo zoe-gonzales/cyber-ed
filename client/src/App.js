@@ -12,6 +12,7 @@ import About from './pages/About';
 import Learn from './pages/Learn';
 import Results from './pages/Results';
 import UserPage from './pages/UserPage';
+import ActionPlan from './components/ActionPlan';
 import NotFound from './pages/NotFound';
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path='/learn' component={Learn} />
             <Route exact path='/results' component={Results} />
             <Route exact path='/user/:user' component={UserPage} />
+            <Route exact path='/plan' component={ActionPlan} />
             <Route component={NotFound} />
           </Switch>
         </div>

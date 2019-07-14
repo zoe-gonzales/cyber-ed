@@ -1,0 +1,20 @@
+[
+    {
+        "id": 2,
+        "num": "1.",
+        "suggestion": "Create unique passwords for your most important accounts.",
+        "learnMore": "Using the same password for every account puts all of your accounts at risk for attack. To manage many unique passwords, a password manager like 1Password or LastPass can be very helpful!"
+    },
+    {
+        "id": 4,
+        "num": "2.",
+        "suggestion": "Add a PIN to your phone's SIM card.",
+        "learnMore": "Hackers can gain access to your SIM card by simply calling your mobile carrier, pretending to be you, and requesting a transfer of your phone number to their device. Protecting your phone's SIM card with a PIN adds an additional layer of security. This can be set up by contacting your mobile carrier."
+    },
+    {
+        "id": 6,
+        "num": "3.",
+        "suggestion": "Set up two-factor authentication.",
+        "learnMore": "Most experts recommend setting up two-factor authentication, even with the prevalence of SIM card theft. The most secure two-factor authentication uses a phone number not associated with your physical phone, such as a Google Voice or Skype number."
+    }
+]
