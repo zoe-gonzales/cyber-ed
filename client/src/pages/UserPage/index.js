@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
 import API from '../../utils/API';
+import ActionPlan from '../../components/ActionPlan';
+import './style.css';
 
 const UserPage = ({ match }) => {
   const [userName, setUserName] = useState('');
@@ -21,15 +18,14 @@ const UserPage = ({ match }) => {
   }, []);
 
   return (
-    <Container>
-      <Row>
-        <Col md="4">
-            Hi, {nickName}
-        </Col>
-        <Col md="4" />
-        <Col md="4" />
-      </Row>
-    </Container>
+    <div>
+      <div className="display-4 text-center welcome">
+        Hi
+        {` ${nickName}`}
+        , your action plan is below:
+      </div>
+      <ActionPlan />
+    </div>
   );
 };
 

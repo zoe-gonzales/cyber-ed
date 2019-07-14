@@ -8,6 +8,7 @@ const ActionPlan = () => {
       {suggestions.map((suggestion) => {
         return (
           <ActionCard
+            key={suggestion.id}
             num={suggestion.num}
             suggestion={suggestion.suggestion}
             learnMore={suggestion.learnMore}
