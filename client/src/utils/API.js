@@ -1,26 +1,20 @@
 const axios = require('axios');
 
-const axiosConfig = {
-  headers: {
-    
-  },
-};
-
 export default {
   logInUser(data) {
-    return axios.post('/login', data, axiosConfig);
+    return axios.post('/login', data, { withCredentials: true });
   },
   signUpUser(data) {
     return axios.post('/signup', data);
   },
   getAllUsers() {
-    return axios.get('/api/users');
+    return axios.get('/api/users', { withCredentials: true });
   },
-  getUserByUserName(user) {
-    return axios.get(`/api/users/${user}`);
+  getUser(user) {
+    return axios.get(`/api/users/${user}`, { withCredentials: true });
   },
   clearUsers() {
-    return axios.delete('/api/users');
+    return axios.delete('/api/users', { withCredentials: true });
   },
   addQuiz(user, data) {
     return axios.post(`/api/quizzes/${user}`, data);

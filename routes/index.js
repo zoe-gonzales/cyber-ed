@@ -31,16 +31,12 @@ const authenticate = passport => {
   router.post('/login', loggedOutOnly, async (req, res, next) => {
     passport.authenticate('local', async (err, user, info) => {     
       try {
-        if(err || !user){
-          const error = new Error('An Error occured');
-          return next(error);
-        }
-        req.login(user, { session : false }, async (error) => {
-          if (error) return next(error);
-          const body = { username: user.username, userPassword: user.userPassword };
-          const token = jwt.sign({ user: body }, process.env.SECRET);
-          return res.json({ token });
-        });     
+        const body = { username: user.username, userPassword: user.userPassword };
+        const token = jwt.sign({ user: body }, process.env.SECRET);
+        return res.json({
+          token,
+          body
+        }); 
       } 
       catch (error) {
         return next(error);

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const userController = require('../../controllers/userController');
+const auth = require('../auth');
 
 router.route('/')
   .get(userController.getAllUsers)
@@ -7,7 +8,7 @@ router.route('/')
   .delete(userController.clearUsers);
 
 router.route('/:user')
-  .get(userController.getUser)
+  .get(auth, userController.getUser)
   .put(userController.updateUser)
   .delete(userController.deleteUser);
 

@@ -1,4 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const db = require('../models');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   getAllUsers(req, res) {
@@ -10,13 +13,7 @@ module.exports = {
   getUser(req, res) {
     db.User
       .find({ username: req.params.user })
-      .then(user => {
-        res.json({
-          message: 'Secure route accessed',
-          user: user,
-          token: req.query.secret_token
-        });
-      })
+      .then(user => res.json(user))
       .catch(err => res.status(422).json(err));
   },
   addUser(req, res) {

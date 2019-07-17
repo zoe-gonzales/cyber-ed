@@ -39,11 +39,10 @@ const SignInForm = () => {
     API.logInUser(data)
       .then((res) => {
         if (res.status === 200) {
-          const user = JSON.parse(res.config.data);
-          setUserName(user.username);
-          redirectPage();
-        } else {
           console.log(res);
+          const user = res.data.body.username;
+          setUserName(user);
+          redirectPage();
         }
       })
       .catch((error) => {

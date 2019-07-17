@@ -20,7 +20,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors());
+app.use(cors({ withCredentials: true, origin: 'localhost:3001' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -31,10 +31,18 @@ passport.deserializeUser((userId, done) => {
   db.User.find({ _id: userId }, (err, user) => done(err, user));
 });
 
+app.use(function(req, res, next) {
+  let token = req.rawHeaders[9].split('').slice(49, req.rawHeaders[9].length).join('');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+  res.header('Access-Control-Request-Method', 'POST, GET, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Authorization', 'Bearer ' + token);
+  next();
+});
+
 app.use('/', routes(passport));
 
 app.use('/api/users', passport.authenticate('jwt', { session : false }), userRoutes);
-
 
 // Serve up static assets (deployed)
 if (process.env.NODE_ENV === 'production') {
