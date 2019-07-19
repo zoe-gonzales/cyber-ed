@@ -39,8 +39,8 @@ const SignInForm = () => {
     API.logInUser(data)
       .then((res) => {
         if (res.status === 200) {
-          console.log(res);
-          const user = res.data.body.username;
+          const userData = JSON.parse(res.config.data);
+          const user = userData.username;
           setUserName(user);
           redirectPage();
         }

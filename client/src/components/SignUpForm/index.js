@@ -42,14 +42,16 @@ const SignUpForm = () => {
           const user = JSON.parse(res.config.data);
           setUserName(user.username);
           let answers = localStorage.getItem('answers');
-          answers = answers.split(',');
-          if (answers.length === 10) {
-            API.addQuiz(user.username, answers)
-              .then((result) => {
-                console.log(result);
-                redirectPage();
-              })
-              .catch(error => console.log(error));
+          if (answers) {
+            answers = answers.split(',');
+            if (answers.length === 10) {
+              API.addQuiz(user.username, answers)
+                .then((result) => {
+                  console.log(result);
+                  redirectPage();
+                })
+                .catch(error => console.log(error));
+            }
           } else redirectPage();
         }
       })

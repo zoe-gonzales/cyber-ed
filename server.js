@@ -6,8 +6,8 @@ const routes = require('./routes');
 const passport = require('passport');
 const cors = require('cors');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const db = require('./models');
-const userRoutes = require('./routes/api/users');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -20,9 +20,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors({ withCredentials: true, origin: 'localhost:3001' }));
+app.use(cors({ withCredentials: true, origin: '*' }));
+app.options('*', cors())
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 require('./passport');
 
@@ -32,17 +34,15 @@ passport.deserializeUser((userId, done) => {
 });
 
 app.use(function(req, res, next) {
-  let token = req.rawHeaders[9].split('').slice(49, req.rawHeaders[9].length).join('');
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
-  res.header('Access-Control-Request-Method', 'POST, GET, OPTIONS');
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Request-Method', 'POST, GET');
+  res.header('Access-Control-Request-Headers', 'Authorization')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Authorization', 'Bearer ' + token);
+  res.header('Access-Control-Allow-Credentials', true);
   next();
 });
 
 app.use('/', routes(passport));
-
-app.use('/api/users', passport.authenticate('jwt', { session : false }), userRoutes);
 
 // Serve up static assets (deployed)
 if (process.env.NODE_ENV === 'production') {

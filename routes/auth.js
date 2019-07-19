@@ -2,15 +2,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 const jwt = require('jsonwebtoken');
 
-module.exports = function(req,res,next){
-  const bearerHeader = req.headers['authorization'];
-    let token;
-    console.log(bearerHeader);
+module.exports = function(req, res, next){
+    console.log(req.cookies['connect.sid']);
+    let token = req.cookies['connect.sid'];
     req.authenticated = false;
-    if (bearerHeader){
+    if (token){
       console.log("11111");
-      var bearer = bearerHeader.split(" ");
-      token = bearer[1];
       jwt.verify(token, process.env.SECRET, async (err, decoded) => {
         console.log("22222");
         if (err){

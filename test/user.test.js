@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-undef */
-// eslint-disable-next-line prefer-destructuring
-
 const { expect } = require('chai');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
@@ -30,8 +26,9 @@ describe('User Controller Actions', () => {
         nickname: 'us-2',
       },
     ]).then(() => {
-      const request = chai.request(server);
-      request.get('/api/users').end((err, res) => {
+      chai.request(server)
+      .get('/api/users')
+      .end((err, res) => {
         const responseStatus = res.status;
         const responseBody = res.body;
 
@@ -62,8 +59,8 @@ describe('User Controller Actions', () => {
       .catch(error => console.log(error));
   });
 
-  // Get User By Id
-  it('should find user by id', (done) => {
+  // Get User By Username
+  it('should find user by username', (done) => {
     db.User.create([
       {
         username: 'user',
@@ -71,27 +68,33 @@ describe('User Controller Actions', () => {
         nickname: 'us',
       },
     ]).then(() => {
-      const request = chai.request(server);
-      request.get('/api/users').end((err, res) => {
+      let token = '456'
+      chai.request(server)
+        .get('/api/users')
+        .set('Access-Control-Allow-Origin', 'http://localhost:3000')
+        .set('Access-Control-Request-Method', 'POST, GET, OPTIONS')
+        .set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+        .set('Authorization', 'Bearer ' + token)
+        .send({ username: 'user', userPassword: 'pass' })
+        .end((err, res) => {
         const responseStatus = res.status;
         const responseBody = res.body;
 
         expect(err).to.be.null;
         expect(responseStatus).to.equal(200);
 
-        // eslint-disable-next-line no-underscore-dangle
-        const id = responseBody[0]._id;
+        const username = responseBody[0].username;
         chai.request(server)
-          .get(`/api/users/${id}`).end((error, response) => {
-            const FindById = response.body;
-            const FindByIdStatus = response.status;
-            // eslint-disable-next-line no-unused-expressions
+          .get(`/api/users/${username}`).end((error, response) => {
+            const FindByUser = response.body;
+            const FindByUserStatus = response.status;
+
             expect(error).to.be.null;
-            expect(FindByIdStatus).to.equal(200);
-            expect(FindById)
+            expect(FindByUserStatus).to.equal(200);
+            expect(FindByUser)
               .to.be.an('array');
 
-            expect(FindById[0])
+            expect(FindByUser[0])
               .to.be.an('object')
               .that.includes({
                 username: 'user',
@@ -111,10 +114,10 @@ describe('User Controller Actions', () => {
       userPassword: 'pass',
       nickname: 'us',
     };
-    const request = chai.request(server);
-    request.post('/api/users', newUser).end((err, res) => {
+    chai.request(server)
+      .post('/api/users', newUser)
+      .end((err, res) => {
       const responseStatus = res.status;
-
       expect(err).to.be.null;
       expect(responseStatus).to.equal(200);
       done();

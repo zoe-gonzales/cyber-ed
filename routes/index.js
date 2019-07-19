@@ -31,8 +31,9 @@ const authenticate = passport => {
   router.post('/login', loggedOutOnly, async (req, res, next) => {
     passport.authenticate('local', async (err, user, info) => {     
       try {
-        const body = { username: user.username, userPassword: user.userPassword };
+        const body = { username: req.body.username, userPassword: req.body.userPassword };
         const token = jwt.sign({ user: body }, process.env.SECRET);
+        res.header('Authorization', `Bearer ${token}`);
         return res.json({
           token,
           body
