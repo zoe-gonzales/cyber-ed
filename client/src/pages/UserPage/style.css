@@ -2,3 +2,13 @@
     margin: 2rem auto;
     font-style: italic;
 }
+
+@media screen and (max-width: 640px) {
+    .welcome {
+        font-size: 2.5rem;
+    }
+
+    .user-body {
+        margin-bottom: 6rem;
+    }
+}

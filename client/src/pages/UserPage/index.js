@@ -19,7 +19,7 @@ const UserPage = ({ match }) => {
   }, []);
 
   return (
-    <div>
+    <div className="user-body">
       <div className="display-4 text-center welcome">
         Hi
         {` ${nickName}`}

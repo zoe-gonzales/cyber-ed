@@ -45,7 +45,7 @@ const Results = () => {
                     <ResultsModal>
                       {question.comment}
                       <br />
-                      <Button onClick={hide} style={{ float: 'right' }}>Close</Button>
+                      <Button className="close-btn" onClick={hide} style={{ float: 'right' }}>X</Button>
                     </ResultsModal>
                   )}
                 />

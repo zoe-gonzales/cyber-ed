@@ -21,13 +21,8 @@ const Home = () => {
         <Row>
           <Col md="3" />
           <Col md="6">
-            <h2 className="display-2 text-center">Cyber Ed</h2>
+            <h2 className="display-3 text-center">Cyber Ed</h2>
             <p className="lead text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p className="lead text-center">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              <br />
               <LinkBtn className="btn" path="/quiz">Take the Quiz</LinkBtn>
             </p>
           </Col>

@@ -4,7 +4,6 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import LinkBtn from '../../components/LinkBtn';
 import './style.css';
 
 const About = () => {
@@ -19,7 +18,6 @@ const About = () => {
           <div className="lead item">
             This is where I will put info that ppl can read about why i made this app.
           </div>
-          <LinkBtn className="item" path="/">Back</LinkBtn>
         </Col>
         <Col md="2" />
       </Row>

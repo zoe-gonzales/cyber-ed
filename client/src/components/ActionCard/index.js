@@ -21,7 +21,7 @@ const ActionCard = ({
               <Modal>
                 {learnMore}
                 <br />
-                <Button onClick={hide}>Close</Button>
+                <Button className="close-btn" onClick={hide}>X</Button>
               </Modal>
             )}
           />
