@@ -92,36 +92,36 @@ So that I feel comfortable trusting the site with my information.
 
 Landing Page
 
-![Landing Page](./client/public/images/readme/landing.png)
+![Landing Page](../client/public/images/readme/landing.png)
 
 Question - text-only
 
-![Question Text Only](./client/public/images/readme/question_text_only.png)
+![Question Text Only](../client/public/images/readme/question_text_only.png)
 
 Question - with image
 
-![Question Text Only](./client/public/images/readme/question_with_image.png)
+![Question Text Only](../client/public/images/readme/question_with_image.png)
 
 Results - desktop
 
-![Results Desktop](./client/public/images/readme/results_desktop.png)
+![Results Desktop](../client/public/images/readme/results_desktop.png)
 
 Results - mobile
 
-<img src="./client/public/images/readme/results_mobile.png" alt="Results Mobile" width="320" height="568">
+<img src="../client/public/images/readme/results_mobile.png" alt="Results Mobile" width="320" height="568">
 
 Plan - desktop
 
-![Plan Desktop](./client/public/images/readme/plan_desktop.png)
+![Plan Desktop](../client/public/images/readme/plan_desktop.png)
 
 Plan Detail - desktop
 
-![Plan Detail Desktop](./client/public/images/readme/plan_details.png)
+![Plan Detail Desktop](../client/public/images/readme/plan_details.png)
 
 Plan - mobile
 
-<img src="./client/public/images/readme/plan_mobile.png" alt="Plan Mobile" width="320" height="568">
+<img src="../client/public/images/readme/plan_mobile.png" alt="Plan Mobile" width="320" height="568">
 
 Plan Detail - mobile
 
-<img src="./client/public/images/readme/plan_detail_mobile.png" alt="Plan Detail Mobile" width="320" height="568">
+<img src="../client/public/images/readme/plan_detail_mobile.png" alt="Plan Detail Mobile" width="320" height="568">
