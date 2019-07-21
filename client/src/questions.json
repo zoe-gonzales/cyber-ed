@@ -29,7 +29,7 @@
             "Not sure"
         ],
         "bestAnswer": 1,
-        "comment": "Multi-factor auth (and more commonly, two-factor) is recommended by most security experts as a way to lessen the chances of an attack. It's best to set up two-factor auth with a separate email or phone number not associated with your phone (Skype or Google Voice number)."
+        "comment": "Multi-factor auth (commonly two-factor) is recommended by most security experts as a way to lessen the chances of an attack. It's best to set up two-factor auth with a separate email or phone number not associated with your phone (Skype or Google Voice number)."
     },
     {
         "id": 4,
@@ -52,29 +52,29 @@
             "Social media"
         ],
         "bestAnswer": 1,
-        "comment": "Email is usually the first account they will target since it contains the most information about many different sites. They will also target bank accounts, particularly for high profile investors. Social media hacks often are related to the popularity of the account's handle, which may be hacked and sold without the account's owner knowledge."
+        "comment": "Email is usually the first account they will target since it contains the most information. They will also target bank accounts, particularly for high profile individuals. Social media hacks often are related to the popularity of the account's handle, which may be hacked and sold without the account owner's knowledge."
     },
     {
         "id": 6,
-        "question": "Q6",
+        "question": "The following are tactics used in phishing emails:",
         "answers": [
-            "a",
-            "b",
-            "c"
+            "Notification of suspicious activity or log in attempts",
+            "Requests for credit card or social security numbers",
+            "Using a generic name to address the recipient",
+            "All of the above"
         ],
-        "bestAnswer": 1,
-        "comment": "Some comments here, yada yada"
+        "bestAnswer": 3,
+        "comment": "Phishing emails can be hard to spot. If something looks suspicious, a good practice is to contact the company that the phising email is posing as. Never click on a link or open an attachment from a questionable sender."
     },
     {
         "id": 7,
-        "question": "Q7",
+        "question": "Chrome automatically disables Flash due to security vulnerabilities.",
         "answers": [
-            "a",
-            "b",
-            "c"
+            "true",
+            "false"
         ],
-        "bestAnswer": 1,
-        "comment": "Some comments here, yada yada"
+        "bestAnswer": 0,
+        "comment": "While other browsers are moving to disabling Flash in the near future, Chrome currently does it by default for security reasons."
     },
     {
         "id": 8,
@@ -96,7 +96,7 @@
             "Not sure"
         ],
         "bestAnswer": 0,
-        "comment": "HTTPS is more secure than HTTP. Never submit sensitive information through a form where the url begins with HTTP. This could put you at risk for an attack."
+        "comment": "HTTPS is more secure than HTTP. Sensitive information should never be sent through a form with a url beginning with HTTP."
     },
     {
         "id": 10,
@@ -107,6 +107,6 @@
             "set up two-factor authentication"
         ],
         "bestAnswer": 2,
-        "comment": "While several of these are good ideas (set up two-factor, delete sensitive data) the first action you should take is changing your passwords."
+        "comment": "Experts recommend a password change as the first step to take in the event of a hack."
     }
 ]

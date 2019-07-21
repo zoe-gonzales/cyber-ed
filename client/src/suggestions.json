@@ -16,5 +16,11 @@
         "num": "3.",
         "suggestion": "Set up two-factor authentication.",
         "learnMore": "Most experts recommend setting up two-factor authentication, even with the prevalence of SIM card theft. The most secure two-factor authentication uses a phone number not associated with your physical phone, such as a Google Voice or Skype number."
+    },
+    {
+        "id": 8,
+        "num": "4.",
+        "suggestion": "Install system updates.",
+        "learnMore": "System updates often include important security updates."
     }
 ]
