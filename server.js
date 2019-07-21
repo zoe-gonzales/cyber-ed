@@ -50,10 +50,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Development
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cyberdb', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cyberdb', { useNewUrlParser: true });
 
 // Heroku
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_CRED, { useNewUrlParser: true });
+// mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_CRED, { useNewUrlParser: true });
 
 
 app.listen(PORT, () => {

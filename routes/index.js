@@ -18,15 +18,6 @@ const loggedOutOnly = (req, res, next) => {
 };
 
 const authenticate = passport => {
-  // Main
-  router.get('/', (req, res) => {
-    console.log(req.user);
-    res.json('success');
-  });
-  // Login View
-  router.get('/login', (req, res) => {
-    res.json('logged in');
-  });
   // Login Handler
   router.post('/login', loggedOutOnly, async (req, res, next) => {
     passport.authenticate('local', async (err, user, info) => {     
@@ -43,11 +34,6 @@ const authenticate = passport => {
         return next(error);
       }
     })(req, res, next);
-  });
-
-  // Signup View
-  router.get('/signup', (req, res) => {
-    res.json('signed up');
   });
   // Signup Handler
   router.post('/signup', (req, res, next) => {
@@ -69,7 +55,6 @@ const authenticate = passport => {
     req.logout();
     res.redirect('/login');
   });
-
   return router;
 }
 
