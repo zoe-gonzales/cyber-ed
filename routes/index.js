@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
+const path = require("path");
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const apiRoutes = require('./api');
@@ -57,5 +58,9 @@ const authenticate = passport => {
   });
   return router;
 }
+
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 module.exports = authenticate;
