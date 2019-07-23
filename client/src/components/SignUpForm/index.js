@@ -49,6 +49,7 @@ const SignUpForm = () => {
                 .then((result) => {
                   console.log(result);
                   redirectPage();
+                  localStorage.clear();
                 })
                 .catch(error => console.log(error));
             }

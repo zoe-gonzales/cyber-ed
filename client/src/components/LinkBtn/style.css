@@ -3,3 +3,8 @@
     border: none;
     color: #202528;
 }
+
+.btn:hover {
+    background-color: #6b757d;
+    color: white;
+}
