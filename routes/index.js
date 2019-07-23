@@ -1,6 +1,5 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const path = require("path");
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const apiRoutes = require('./api');
