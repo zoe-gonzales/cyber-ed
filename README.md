@@ -20,7 +20,7 @@ This page will automatically redirect you to the action plan page which has more
 
 If you're returning to your account, use *Log In* to go to the home page. 
 
-Sample Text Login:
+Sample Login:
 ` username: user1 `
 ` password: password1 `
 
@@ -49,7 +49,7 @@ Building the app's authentication was challenging, and the following are areas o
 ## Responsiveness
 This app was created with mobile responsiveness in mind.
 
-<img src="./client/public/images/readme/signin.png" width="320">
-<img src="./client/public/images/readme/quiz.png" width="320">
-<img src="./client/public/images/readme/modal.png" width="320">
-<img src="./client/public/images/readme/action.png" width="320">
+<img src="./client/public/images/readme/signin.png" width="320" style="float: left;">
+<img src="./client/public/images/readme/quiz.png" width="320" style="float: left;">
+<img src="./client/public/images/readme/modal.png" width="320" style="float: left;">
+<img src="./client/public/images/readme/action.png" width="320" style="float: left;">
