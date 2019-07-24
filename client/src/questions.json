@@ -56,7 +56,7 @@
     },
     {
         "id": 6,
-        "question": "The following are tactics used in phishing emails:",
+        "question": "The following are indicators of a phishing email:",
         "answers": [
             "Notification of suspicious activity or log in attempts",
             "Requests for credit card or social security numbers",
