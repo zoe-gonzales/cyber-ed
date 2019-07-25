@@ -3,13 +3,13 @@ import API from '../../utils/API';
 import ActionPlan from '../../components/ActionPlan';
 import './style.css';
 
-const UserPage = ({ match }) => {
+const UserPage = (props) => {
   const [userName, setUserName] = useState('');
   const [nickName, setNickName] = useState('');
   const [userId, setUserId] = useState('');
 
   useEffect(() => {
-    API.getUser(match.params.user)
+    API.getUser(props.props.match.params.user)
       .then((response) => {
         setUserName(response.data[0].username);
         setNickName(response.data[0].nickname);

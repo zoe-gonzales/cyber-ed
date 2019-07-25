@@ -9,7 +9,7 @@ router.use('/api', apiRoutes);
 
 const loggedInOnly = (req, res, next) => {
   if (req.isAuthenticated()) next();
-  else res.redirect('/login');
+  else res.redirect('/');
 };
 
 const loggedOutOnly = (req, res, next) => {
@@ -51,9 +51,9 @@ const authenticate = passport => {
       });
   });
   // Logout Handler
-  router.all('/logout', loggedInOnly, function(req, res) {
+  router.get('/logout', /*loggedInOnly,*/ function(req, res) {
     req.logout();
-    res.redirect('/login');
+    res.redirect('/');
   });
   return router;
 }

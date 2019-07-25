@@ -4,6 +4,9 @@ export default {
   logInUser(data) {
     return axios.post('/login', data, { withCredentials: true });
   },
+  logOutUser() {
+    return axios.get('/logout', { withCredentials: true });
+  },
   signUpUser(data) {
     return axios.post('/signup', data);
   },
