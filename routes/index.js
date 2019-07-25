@@ -51,7 +51,7 @@ const authenticate = passport => {
       });
   });
   // Logout Handler
-  router.get('/logout', /*loggedInOnly,*/ function(req, res) {
+  router.get('/logout', loggedInOnly, function(req, res) {
     req.logout();
     res.redirect('/');
   });

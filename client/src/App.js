@@ -6,7 +6,6 @@ import {
   Router,
   Route,
   Switch,
-  Redirect,
 } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import LoggedInNav from './components/LoggedInNav';
@@ -36,11 +35,12 @@ const App = () => {
             exact
             path='/logout'
             render={() => {
-              setLoggedOutNav(true);
-              return <Redirect to='/loggedout' />;
+              API.logOutUser()
+                .then(res => console.log(res))
+                .catch(error => console.log(error));
+              return <LoggedOut />;
             }}
           />
-          <Route exact path='/loggedout' component={LoggedOut} />
           <Route exact path='/signup' component={SignUpForm} />
           <Route exact path='/quiz' component={Quiz} />
           <Route exact path='/about' component={About} />
