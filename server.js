@@ -21,10 +21,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(cors({ withCredentials: true, origin: '*' }));
-app.options('*', cors())
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.options('*', cors());
 
 require('./passport');
 
@@ -49,6 +46,10 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cyberdb', { useNewUrlParser: true });
 }
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use('/', routes(passport));
 
