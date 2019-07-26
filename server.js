@@ -7,6 +7,7 @@ const passport = require('passport');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const httpProxy = require('http-proxy');
 const db = require('./models');
 
 const PORT = process.env.PORT || 3001;
@@ -46,6 +47,12 @@ app.use(function(req, res, next) {
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.use('*', express.static('client/build'));
+  httpProxy.createProxyServer({
+    target: 'https://cyber-ed.herokuapp.com/',
+    toProxy: true,
+    changeOrigin: true,
+    xfwd: true
+  })
   mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_CRED, { useNewUrlParser: true });
 } else {
   mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cyberdb', { useNewUrlParser: true });
