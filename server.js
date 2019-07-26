@@ -22,6 +22,9 @@ app.use(passport.session());
 
 app.use(cors({ withCredentials: true, origin: '*' }));
 app.options('*', cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 require('./passport');
 
@@ -35,6 +38,7 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Request-Method', 'POST, GET');
   res.header('Access-Control-Request-Headers', 'Authorization')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Content-Type', 'application/json');
   res.header('Access-Control-Allow-Credentials', true);
   next();
 });
@@ -46,10 +50,6 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cyberdb', { useNewUrlParser: true });
 }
-
-// app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
 
 app.use('/', routes(passport));
 
