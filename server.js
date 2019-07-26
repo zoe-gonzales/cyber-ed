@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 });
 
 if (process.env.NODE_ENV === 'production') {
-  // app.use(express.static('client/build'));
+  app.use(express.static('client/build'));
   app.use('*', express.static('client/build'));
   mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_CRED, { useNewUrlParser: true });
 } else {
