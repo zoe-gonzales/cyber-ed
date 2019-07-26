@@ -43,14 +43,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
-app.use('/', routes(passport));
+app.use(routes(passport));
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use('/', express.static(path.join(__dirname, '/build')));
   mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_CRED, { useNewUrlParser: true });
 } else {
   mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cyberdb', { useNewUrlParser: true });
