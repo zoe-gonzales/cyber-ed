@@ -11,9 +11,10 @@ const UserPage = (props) => {
   useEffect(() => {
     API.getUser(props.props.match.params.user)
       .then((response) => {
-        setUserName(response.data[0].username);
-        setNickName(response.data[0].nickname);
-        setUserId(response.data[0]._id);
+        console.log(response.data.nickname);
+        setUserName(response.data.username);
+        setNickName(response.data.nickname);
+        setUserId(response.data._id);
       })
       .catch(error => console.log(error));
   }, []);
