@@ -5,7 +5,7 @@ router.route('/:user')
   .get(quizController.getAllQuizzes)
   .post(quizController.addQuiz);
 
-router.route('/:id')
+router.route('/:user/:id')
   .get(quizController.getQuiz)
   .put(quizController.updateQuiz)
   .delete(quizController.deleteQuiz);

@@ -12,28 +12,35 @@ describe('Quiz Controller Actions', () => {
     return db.Quiz.deleteMany({});
   });
 
+  // Get all Quizzes for a User
   it('should find all quizzes in database for a user', (done) =>{
-    db.Quiz.create({
-      answers: ['a', 'b', 'c', 'd']
-    }).then(() => {
-      chai.request(server)
-        .get('/api/quizzes').end((err, res) => {
-          const responseStatus = res.status;
-          const responseBody = res.body;
-
-          expect(err).to.be.null;
-          expect(responseStatus).to.equal(200);
-          expect(responseBody)
-            .to.be.an('array')
-            .that.has.lengthOf(1);
-
-          expect(responseBody[0])
-            .to.be.an('object')
-            .that.includes({
-              answers: ['a', 'b', 'c', 'd']
-            });
-          done();
+    db.User.create({
+      username: 'aaa',
+      userPassword: 'bbb',
+      nickname: 'ccc',
+    }).then(db.Quiz
+      .create({ answers: ['a', 'b', 'c'] })
+      .then(quizData => {
+        return db.User
+          .findOneAndUpdate(
+            { username: 'aaa' },
+            { $push: { quizzes: quizData } },
+            { new: true }
+          );
+      }).then(() => {
+        chai.request(server)
+          .get('/api/quizzes/aaa')
+          .end((err, res) => {
+            expect(err).to.be.null;
+            expect(res.status).to.equal(200);
+            console.log(res.body)
+            expect(res.body)
+              .to.be.an('array')
+              .that.has.lengthOf(1);
+            expect(res.body[0].answers)
+              .equals(['a', 'b', 'c'])
+            done();
         });
-    });
+    }));
   });
 });

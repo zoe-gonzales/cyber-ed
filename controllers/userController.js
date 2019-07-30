@@ -33,14 +33,13 @@ module.exports = {
   },
   deleteUser(req, res) {
     db.User
-      .find({ username: req.params.user })
-      .then(userData => userData.remove())
+      .deleteOne({ username: req.params.user })
       .then(result => res.json(result))
       .catch(err => res.status(422).json(err));
   },
   clearUsers(req, res) {
     db.User
-      .remove({})
+      .deleteMany({})
       .then(result => res.json(result))
       .catch(err => res.status(422).json(err));
   }

@@ -63,69 +63,41 @@ describe('User Controller Actions', () => {
   it('should find user by username', (done) => {
     db.User.create([
       {
-        username: 'user',
-        userPassword: 'pass',
-        nickname: 'us',
+        username: 'billybob',
+        userPassword: 'iambillybob',
+        nickname: 'bill',
       },
-    ]).then(() => {
-      let token = '456'
+    ])
+    .then(() => {
       chai.request(server)
-        .get('/api/users')
-        .set('Access-Control-Allow-Origin', 'http://localhost:3000')
-        .set('Access-Control-Request-Method', 'POST, GET, OPTIONS')
-        .set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-        .set('Authorization', 'Bearer ' + token)
-        .send({ username: 'user', userPassword: 'pass' })
-        .end((err, res) => {
-        const responseStatus = res.status;
-        const responseBody = res.body;
-
-        expect(err).to.be.null;
-        expect(responseStatus).to.equal(200);
-
-        const username = responseBody[0].username;
-        chai.request(server)
-          .get(`/api/users/${username}`).end((error, response) => {
-            const FindByUser = response.body;
-            const FindByUserStatus = response.status;
-
+        .get(`/api/users/billybob`)
+        .end((error, res) => {
             expect(error).to.be.null;
-            expect(FindByUserStatus).to.equal(200);
-            expect(FindByUser)
-              .to.be.an('array');
-
-            expect(FindByUser[0])
-              .to.be.an('object')
-              .that.includes({
-                username: 'user',
-                userPassword: 'pass',
-                nickname: 'us',
-              });
+            expect(res.status).to.equal(200);
             done();
           });
-      });
-    }).catch(error => console.log(error));
-  });
+      }).catch(error => console.log(error));
+    });
+    
 
   // Add a User
-  it('should add a user to the database', (done) => {
+  it('should add a user to the database by signing up', (done) => {
     const newUser = {
-      username: 'user',
-      userPassword: 'pass',
-      nickname: 'us',
+      username: 'user3000',
+      userPassword: 'password3000',
+      nickname: 'user',
     };
     chai.request(server)
-      .post('/api/users', newUser)
+      .post('/signup', newUser)
       .end((err, res) => {
-      const responseStatus = res.status;
       expect(err).to.be.null;
-      expect(responseStatus).to.equal(200);
+      expect(res.status).to.equal(200);
       done();
     });
   });
 
   // Update a User
-  it('should find user by id and update', (done) => {
+  it('should find user by username and update', (done) => {
     db.User.create([
       {
         username: 'user',
@@ -133,38 +105,19 @@ describe('User Controller Actions', () => {
         nickname: 'us',
       },
     ]).then(() => {
-      const request = chai.request(server);
-      request.get('/api/users').end((err, res) => {
-        const responseStatus = res.status;
-        const responseBody = res.body;
-
-        expect(err).to.be.null;
-        expect(responseStatus).to.equal(200);
-
-        // eslint-disable-next-line no-underscore-dangle
-        const id = responseBody[0]._id;
-        const newNickname = {
-          username: 'user',
-          userPassword: 'pass',
-          nickname: 'bob',
-        };
-        chai.request(server)
-          .put(`/api/users/${id}`, newNickname).end((error, response) => {
-            const responseUpdate = response.body;
-            const responseUpdateStatus = response.status;
-
+      const newNickname = {
+        username: 'user',
+        userPassword: 'pass',
+        nickname: 'bob',
+      }
+      chai.request(server)
+          .put(`/api/users/user`, newNickname)
+          .end((error, response) => {
             expect(error).to.be.null;
-            expect(responseUpdateStatus).to.equal(200);
-            expect(responseUpdate[0])
-              .to.be.an('object')
-              .that.includes({
-                nickname: 'bob',
-                _id: id,
-              });
+            expect(response.status).to.equal(200);
             done();
           });
-      });
-    }).catch(error => console.log(error));
+      }).catch(error => console.log(error));
   });
 
   // Delete a User
@@ -172,30 +125,17 @@ describe('User Controller Actions', () => {
     db.User.create([
       {
         username: 'user',
-        password: 'pass',
+        userPassword: 'pass',
         nickname: 'us',
       },
     ]).then(() => {
       chai.request(server)
-        .get('/api/users').end((err, res) => {
-          const responseStatus = res.status;
-          const responseBody = res.body;
-
-          expect(err).to.be.null;
-          expect(responseStatus).to.equal(200);
-          // eslint-disable-next-line no-underscore-dangle
-          const id = responseBody[0]._id;
-          chai.request(server)
-            .delete(`/api/users/${id}`).end((error, response) => {
-              const deleteBody = response.body;
-              const deleteStatus = response.status;
-
-              expect(error).to.be.null;
-              expect(deleteStatus).to.equal(200);
-              expect(deleteBody).to.equal({});
-              done();
-            });
-        });
-    });
+          .delete(`/api/users/user`)
+          .end((error, response) => {
+            expect(error).to.be.null;
+            expect(response.status).to.equal(200);
+            done();
+          });
+      });
   });
 });
