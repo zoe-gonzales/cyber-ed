@@ -13,13 +13,14 @@ describe('Quiz Controller Actions', () => {
   });
 
   // Get all Quizzes for a User
-  it('should find all quizzes in database for a user', (done) =>{
-    db.User.create({
+  it('should find all quizzes in database for a user', done => {
+    db.User
+      .create({
       username: 'aaa',
       userPassword: 'bbb',
       nickname: 'ccc',
-    }).then(db.Quiz
-      .create({ answers: ['a', 'b', 'c'] })
+    })
+      .then(db.Quiz.create({ answers: ['a', 'b', 'c'] })
       .then(quizData => {
         return db.User
           .findOneAndUpdate(
@@ -28,17 +29,17 @@ describe('Quiz Controller Actions', () => {
             { new: true }
           );
       }).then(() => {
-        chai.request(server)
+        chai
+          .request(server)
           .get('/api/quizzes/aaa')
           .end((err, res) => {
             expect(err).to.be.null;
             expect(res.status).to.equal(200);
-            console.log(res.body)
             expect(res.body)
               .to.be.an('array')
               .that.has.lengthOf(1);
-            expect(res.body[0].answers)
-              .equals(['a', 'b', 'c'])
+            expect(res.body[0])
+              .includes({ answers: ['a', 'b', 'c'] });
             done();
         });
     }));

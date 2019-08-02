@@ -13,7 +13,7 @@ describe('User Controller Actions', () => {
   });
 
   // Get All Users
-  it('should find all users in the database', (done) => {
+  it('should find all users in the database', done => {
     db.User.create([
       {
         username: 'user',
@@ -59,8 +59,8 @@ describe('User Controller Actions', () => {
       .catch(error => console.log(error));
   });
 
-  // Get User By Username
-  it('should find user by username', (done) => {
+  // Log In User
+  it('should successfully log in user', done => {
     db.User.create([
       {
         username: 'billybob',
@@ -70,7 +70,11 @@ describe('User Controller Actions', () => {
     ])
     .then(() => {
       chai.request(server)
-        .get(`/api/users/billybob`)
+        .post(`/login`, {
+          username: 'billybob',
+          userPassword: 'iambillybob',
+          nickname: 'bill',
+        })
         .end((error, res) => {
             expect(error).to.be.null;
             expect(res.status).to.equal(200);
@@ -79,25 +83,23 @@ describe('User Controller Actions', () => {
       }).catch(error => console.log(error));
     });
     
-
-  // Add a User
-  it('should add a user to the database by signing up', (done) => {
-    const newUser = {
-      username: 'user3000',
-      userPassword: 'password3000',
-      nickname: 'user',
-    };
+  // Sign Up User
+  it('should successfully sign up user', done => {
     chai.request(server)
-      .post('/signup', newUser)
+      .post('/signup', {
+        username: 'user3000',
+        userPassword: 'password3000',
+        nickname: 'user',
+      })
       .end((err, res) => {
-      expect(err).to.be.null;
-      expect(res.status).to.equal(200);
-      done();
-    });
+        expect(err).to.be.null;
+        expect(res.status).to.equal(200);
+        done();
+      });
   });
 
   // Update a User
-  it('should find user by username and update', (done) => {
+  it('should find user by username and update', done => {
     db.User.create([
       {
         username: 'user',
@@ -121,7 +123,7 @@ describe('User Controller Actions', () => {
   });
 
   // Delete a User
-  it('should remove a user from the database', (done) => {
+  it('should remove a user from the database', done => {
     db.User.create([
       {
         username: 'user',
@@ -137,5 +139,23 @@ describe('User Controller Actions', () => {
             done();
           });
       });
+  });
+});
+
+describe('Authentication', () => {
+  beforeEach(() => {
+    chai.request(server);
+    return db.User.deleteMany({});
+  });
+
+  it('should hash a plain text password', done => {
+    let User = db.User;
+    let user = new User();
+    user.hashPassword('bestpasswordever', hash => {
+      expect(hash).to.not.be.undefined;
+      expect(hash).to.be.string;
+      expect(hash).to.not.equal('bestpasswordever');
+      done();
+    });
   });
 });
