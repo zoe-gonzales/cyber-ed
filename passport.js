@@ -17,10 +17,10 @@ const local = new LocalStrategy({
       if( !user ){
         return done(null, false, { message : 'User not found'});
       }
-      // const validate = await User.validatePassword(userPassword);
-      // if( !validate ){
-      //   return done(null, false, { message : 'Wrong Password'});
-      // }
+      const validate = await user.validatePassword(userPassword);
+      if( !validate ){
+        return done(null, false, { message : 'Wrong Password'});
+      }
       return done(null, user, { message : 'Logged in Successfully'});
     } 
     catch (error) {

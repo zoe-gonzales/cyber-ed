@@ -30,13 +30,10 @@ userSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.userPassword);
 };
 
-userSchema.methods.hashPassword = plainTextPass => {
+userSchema.methods.hashPassword = (plainTextPass, cb) => {
   bcrypt.hash(plainTextPass, saltRounds, function(err, hash) {
     if (err) throw err;
-    if (hash === undefined) {
-      throw 'data not received';
-    }
-    return hash;
+    cb(hash);
   });
 }
 

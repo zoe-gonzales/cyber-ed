@@ -37,9 +37,13 @@ const authenticate = passport => {
   });
   // Signup Handler
   router.post('/signup', (req, res, next) => {
-    // let pass = User.hashPassword(req.body.userPassword);
-    // req.body.userPassword = pass;
-    User.create(req.body)
+    let user = new User({
+      username: req.body.username,
+      nickname: req.body.nickname,
+    });
+    user.hashPassword(req.body.userPassword, hash => {
+      user.userPassword = hash;
+      User.create(user)
       .then(user => {
         req.login(user, err => {
           if (err) next(err);
@@ -51,6 +55,7 @@ const authenticate = passport => {
           res.redirect('/signup');
         } else next(err);
       });
+    });
   });
   // Logout Handler
   router.get('/logout', loggedInOnly, function(req, res) {
