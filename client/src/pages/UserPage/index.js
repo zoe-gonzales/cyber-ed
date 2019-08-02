@@ -11,7 +11,6 @@ const UserPage = (props) => {
   useEffect(() => {
     API.getUser(props.props.match.params.user)
       .then((response) => {
-        console.log(response);
         setUserName(response.data[0].username);
         setNickName(response.data[0].nickname);
         setUserId(response.data[0]._id);
@@ -22,8 +21,7 @@ const UserPage = (props) => {
   return (
     <div className="user-body">
       <div className="display-4 text-center welcome">
-        Hi
-        {` ${nickName}`}
+        {nickName ? `Hi ${nickName}` : 'Welcome'}
         , your action plan is below:
       </div>
       <ActionPlan />

@@ -44,7 +44,6 @@ Video demo: https://drive.google.com/file/d/1laD0rAt0MkxvOtTeEVabQMphWKRhHuQ6/vi
 Building the app's authentication was challenging, and the following are areas of improvement that are currently being worked on:
 * Using bycrypt to hash all passwords
 * Send the JWT in the headers to properly verify the token
-* Completing log out functionality
 
 ## Responsiveness
 This app was created with mobile responsiveness in mind.

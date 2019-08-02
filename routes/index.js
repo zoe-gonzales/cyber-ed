@@ -37,6 +37,8 @@ const authenticate = passport => {
   });
   // Signup Handler
   router.post('/signup', (req, res, next) => {
+    // let pass = User.hashPassword(req.body.userPassword);
+    // req.body.userPassword = pass;
     User.create(req.body)
       .then(user => {
         req.login(user, err => {

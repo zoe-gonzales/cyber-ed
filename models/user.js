@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-
-// eslint-disable-next-line prefer-destructuring
 const Schema = mongoose.Schema;
 const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const userSchema = new Schema({
   username: {
@@ -27,13 +26,19 @@ const userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator);
 
-userSchema.methods.validPassword = function(password) {
+userSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.userPassword);
 };
 
-userSchema.virtual('password').set(value => {
-  userSchema.userPassword = bcrypt.hashSync(value, 12);
-});
+userSchema.methods.hashPassword = plainTextPass => {
+  bcrypt.hash(plainTextPass, saltRounds, function(err, hash) {
+    if (err) throw err;
+    if (hash === undefined) {
+      throw 'data not received';
+    }
+    return hash;
+  });
+}
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
