@@ -14,13 +14,14 @@ const local = new LocalStrategy({
   async (username, userPassword, done) => {
     try {
       const user = await User.findOne({ username });
-      if( !user ){
+      if (!user) {
         return done(null, false, { message : 'User not found'});
       }
-      const validate = await user.validatePassword(userPassword);
-      if( !validate ){
-        return done(null, false, { message : 'Wrong Password'});
-      }
+      await user.validatePassword(userPassword, passwordsMatch => {
+        if (!passwordsMatch) {
+          return done(null, false, { message : 'Wrong Password'});
+        }
+      });
       return done(null, user, { message : 'Logged in Successfully'});
     } 
     catch (error) {

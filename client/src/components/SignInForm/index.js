@@ -19,6 +19,7 @@ import './style.css';
 const SignInForm = () => {
   const [redirect, setRedirect] = useState(false);
   const [invalidCred, setInvalidCred] = useState(false);
+  const [noUser, setNoUser] = useState(false);
   const [userName, setUserName] = useState('');
 
   const redirectPage = () => {
@@ -38,7 +39,9 @@ const SignInForm = () => {
     };
     API.logInUser(data)
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 200 && res.data === 'User does not exist') {
+          setNoUser(true);
+        } else if (res.status === 200) {
           const userData = JSON.parse(res.config.data);
           const user = userData.username;
           setUserName(user);
@@ -68,6 +71,7 @@ const SignInForm = () => {
                   <Input type="password" name="userPassword" id="pass" value={input.userPassword} onChange={handleInputChange} />
                 </FormGroup>
                 {invalidCred ? <div>Invalid username or password.</div> : null}
+                {noUser ? <div>Username not found.</div> : null}
                 <Button type="submit">Submit</Button>
                 <Link to="/signup" className="link">Sign Up</Link>
               </Form>

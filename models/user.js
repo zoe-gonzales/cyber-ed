@@ -26,8 +26,12 @@ const userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator);
 
-userSchema.methods.validatePassword = function(password) {
-  return bcrypt.compareSync(password, this.userPassword);
+userSchema.methods.validatePassword = (plainTextPass, cb) => {
+  bcrypt
+    .compare(plainTextPass, hash)
+    .then(res => {
+      cb(res);
+    });
 };
 
 userSchema.methods.hashPassword = (plainTextPass, cb) => {

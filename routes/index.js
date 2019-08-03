@@ -20,19 +20,26 @@ const loggedOutOnly = (req, res, next) => {
 const authenticate = passport => {
   // Login Handler
   router.post('/login', loggedOutOnly, async (req, res, next) => {
-    passport.authenticate('local', async (err, user, info) => {     
-      try {
-        const body = { username: req.body.username, userPassword: req.body.userPassword };
-        const token = jwt.sign({ user: body }, process.env.SECRET);
-        res.header('Authorization', `Bearer ${token}`);
-        return res.json({
-          token,
-          body
-        }); 
-      } 
-      catch (error) {
-        return next(error);
-      }
+    passport.authenticate('local', async (err, user, info) => {
+      User.find({ username: req.body.username })
+        .then(data => {
+          if (data.length === 0) {
+            res.json("User does not exist");
+          } else {
+            try {
+              const body = { username: req.body.username, userPassword: req.body.userPassword };
+              const token = jwt.sign({ user: body }, process.env.SECRET);
+              res.header('Authorization', `Bearer ${token}`);
+              return res.json({
+                token,
+                body
+              }); 
+            } 
+            catch (error) {
+              return next(error);
+            }
+          }
+        });
     })(req, res, next);
   });
   // Signup Handler
